@@ -1,0 +1,40 @@
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>A Blog</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+  </head>
+
+  <body>
+    <header class="display-flex justify-space-between align-center p-2">
+      <h1>
+        <a href="/">Bloggy Woggy</a>
+      </h1>
+      <nav>
+        <!-- Conditionally render login or logout links -->
+        {{#if logged_in}}
+          <a href="/dashboard">dashboard</a>
+          |
+          <button class="no-button" id="logout">logout</button>
+        {{else}}
+          <a href="/login">login</a>
+        {{/if}}
+      </nav>
+    </header>
+    <main>
+      <!-- Render the sub layout -->
+      {{{body}}}
+    </main>
+
+    <!-- Render script for logged in users only -->
+    {{#if logged_in}}
+      <script src="/js/logout.js"></script>
+    {{/if}}
+  </body>
+
+</html>
