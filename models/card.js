@@ -13,10 +13,13 @@ Card.init(
     },
     user_id: {
       type: DataTypes.STRING,
-      allowNull: tru,
-      allowNull: false,
+      allowNull: true,
+
     },
-    
+    mana_value:{
+        type: DataTypes.INTEGER,
+        allowNull: false
+    }
   },
   {
     sequelize,
