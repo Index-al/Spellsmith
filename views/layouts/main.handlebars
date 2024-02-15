@@ -1,42 +1,39 @@
 <html lang="en">
-
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Magic Deck Builder</title>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
-    />
+    <!-- Link to style.css -->
+    <link rel="stylesheet" href="/css/style.css" />
   </head>
-
   <body>
-    <header class="columns has-background-info section">
-      <h1 class="column is-7">
-        <a href="/" class="title is-2 has-text-white">Magic Deck Builder</a>
+    <header class="navbar">
+      <h1>
+        <a href="/">Magic Deck Builder</a>
       </h1>
-      <nav class="column is-5 has-text-right-tablet">
+      <nav>
+        {{!-- Deck Builder button --}} 
+        <a href="/deck-builder" class="button">Deck Builder</a>
+        {{!-- Collection button --}}
+        <a href="/collection" class="button">My Collection</a>
         <!-- Conditionally render login or logout links -->
         {{#if logged_in}}
-          <a
-            href="/account"
-            class="button is-ghost has-text-white is-size-4"
-          >account</a>
-          |
-          <button
-            class="button is-ghost has-text-white is-size-4"
-            id="logout"
-          >logout</button>
-        {{else}}
-          <a
-            href="/login"
-            class="button is-ghost has-text-white is-size-4"
-          >login</a>
+        {{!-- My Account button --}}
+        <a href="/account" class="button">My Account</a>
+        {{!-- Logout button --}}
+        <button class="button" id="logout">Logout</button>
+      {{else}}
+        {{!-- Login button --}}
+        <a href="/login" class="button">Login</a>
         {{/if}}
       </nav>
     </header>
-    <main class="columns is-flex-direction-column">
-      <!-- Render the sub layout -->
+    {{!-- WIP navbar styling element --}}
+    <div class="fade">
+      </div>
+    
+    <main>
+      <!-- Render the main content on the page(below navbar) -->
       {{{body}}}
     </main>
 
@@ -45,5 +42,4 @@
       <script src="/js/logout.js"></script>
     {{/if}}
   </body>
-
 </html>

@@ -1,0 +1,218 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background-color: #393939;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  font-family: Lato, Helvetica Neue, Arial, Helvetica, sans-serif;
+}
+.fade {
+    position: fixed;
+    top: 2%;
+    left: 0;
+    right: 0;
+    height: 100px;
+    background-image: linear-gradient(to bottom, rgba(57, 57, 57, 1) 0%, rgba(57, 57, 57, 1) 80%, rgba(57, 57, 57, 0) 100%);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    font-family: Lato, Helvetica Neue, Arial, Helvetica, sans-serif;
+    z-index: -1;
+  }
+  
+
+.navbar h1 {
+    margin: 0;
+    font-size: 36px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: white;
+}
+
+.navbar h1 a:visited {
+  color: white;
+  text-decoration: none;
+}
+
+.navbar ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+.navbar li {
+  margin-left: 10px;
+}
+
+.navbar a {
+  text-decoration: none;
+}
+
+/* Background */
+body {
+    background-image: url('../assets/hexagon_bg.png');
+    background-repeat: repeat;
+    background-size: 500px 500px;
+}
+
+/* Login form styling */
+.login-container {
+    position: fixed;
+    top: 50%;
+    left: 35%;
+    transform: translate(-50%, -50%);
+    border: 1px solid #CCCCCC;
+    border-radius: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    background: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.signup-container {
+    position: fixed;
+    top: 50%;
+    left: 65%;
+    transform: translate(-50%, -50%);
+    border: 1px solid #CCCCCC;
+    border-radius: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    background: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Style the input fields */
+.input-field {
+    border: none;
+    padding: 8px 16px;
+    margin: 8px 0;
+    border-radius: 4px;
+    outline: none;
+    background-color: #e3e3e3;
+}
+
+/* Style the login button */
+.login-button {
+    border: none;
+    padding: 8px 16px;
+    margin: 8px 0;
+    border-radius: 6px;
+    background: #393939;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    outline: none;
+}
+
+/* Style the login button when it is hovered */
+.login-button:hover {
+    background: #434343;
+}
+
+/* Style the login button when it is focused */
+.login-button:focus {
+    background: #434343;
+}
+
+.login-form h2 {
+    font-family: Lato, Helvetica Neue, Arial, Helvetica, sans-serif;
+    margin: 0;
+    font-size: 24px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #393939;
+}
+
+/* Container to hold the search input and button */
+.search-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid #CCCCCC;
+    border-radius: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+}
+
+/* Style the search input */
+.search-input {
+    border: none;
+    padding: 8px 16px;
+    font-size: 16px;
+    border-radius: 20px 0 0 20px; /* Only round the left corners */
+    outline: none;
+    flex-grow: 1; /* Take up available space */
+}
+
+/* Style the search button */
+.search-button {
+    border: none;
+    padding: 8px 16px;
+    font-size: 16px;
+    background: #FFFFFF;
+    border-radius: 0 20px 20px 0; /* Only round the right corners */
+    cursor: pointer;
+    outline: none;
+}
+
+/* Adjust the placeholder color */
+.search-input::placeholder {
+    color: #AAAAAA;
+}
+
+/* Style the search input when it is focused */
+.search-input:focus {
+    border-color: #777777;
+}
+
+/* Style the search button when it is hovered */
+.search-button:hover {
+    background: #F0F0F0;
+}
+
+.button {
+  background-color: #f2f2f2;
+  color: #434343;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #dcdcdc;
+}
+
+.nothing {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-family: Lato, Helvetica Neue, Arial, Helvetica, sans-serif;
+    font-size: 24px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
