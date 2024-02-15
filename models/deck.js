@@ -12,8 +12,8 @@ Deck.init(
       autoIncrement: true,
     },
     user_id: {
-      type: DataTypes.STRING,
-      allowNull: true,
+      type: DataTypes.INTEGER,
+      allowNull: false,
       references: {
         model: "user",
         key: "id",
@@ -23,7 +23,7 @@ Deck.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    
+
     is_public: {
       type: DataTypes.BOOLEAN,
       allowNull: false,

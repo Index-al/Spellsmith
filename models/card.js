@@ -12,7 +12,7 @@ Card.init(
       autoIncrement: true,
     },
     user_id: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: true,
       references: {
         model: "user",
@@ -31,7 +31,7 @@ Card.init(
         key: "id",
       },
     },
-    wishlist_id: {
+    clipboard_id: {
       type: DataTypes.INTEGER,
       allowNull: true,
       references: {

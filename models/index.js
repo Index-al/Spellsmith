@@ -2,7 +2,7 @@ const User = require("./user");
 const Deck = require("./deck");
 const Clipboard = require("./clipboard");
 const Card = require("./card");
-
+const Collection = require("./collection");
 const CardCollection = require("./CardCollection");
 const CardDeck = require("./CardDeck");
 const CardClipboard = require("./CardClipboard");
@@ -34,11 +34,11 @@ Deck.belongsTo(User, {
 Card.belongsToMany(Collection, { through: CardCollection });
 Collection.belongsToMany(Card, { through: CardCollection });
 
-Deck.belongsToMany(Card, { through: CardDeck });
 Card.belongsToMany(Deck, { through: CardDeck });
+Deck.belongsToMany(Card, { through: CardDeck });
 
-Clipboard.belongsToMany(Card, { through: CardClipboard });
 Card.belongsToMany(Clipboard, { through: CardClipboard });
+Clipboard.belongsToMany(Card, { through: CardClipboard });
 
 module.exports = {
   User,
