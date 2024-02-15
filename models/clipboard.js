@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
 
-class Deck extends Model {}
+class Clipboard extends Model {}
 
-Deck.init(
+Clipboard.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -19,23 +19,13 @@ Deck.init(
         key: "id",
       },
     },
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    
-    is_public: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false,
-      defaultValue: false,
-    },
   },
   {
     sequelize,
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: "deck",
+    modelName: "clipboard",
   }
 );
-module.exports = Deck;
+module.exports = Clipboard;
