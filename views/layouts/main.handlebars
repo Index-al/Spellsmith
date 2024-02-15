@@ -11,22 +11,31 @@
   </head>
 
   <body>
-    <header class="display-flex justify-space-between align-center p-2">
-      <h1>
-        <a href="/">Magic Deck Builder</a>
+    <header class="columns has-background-info section">
+      <h1 class="column is-7">
+        <a href="/" class="title is-2 has-text-white">Magic Deck Builder</a>
       </h1>
-      <nav>
+      <nav class="column is-5 has-text-right-tablet">
         <!-- Conditionally render login or logout links -->
         {{#if logged_in}}
-          <a href="/account">account</a>
+          <a
+            href="/account"
+            class="button is-ghost has-text-white is-size-4"
+          >account</a>
           |
-          <button class="no-button" id="logout">logout</button>
+          <button
+            class="button is-ghost has-text-white is-size-4"
+            id="logout"
+          >logout</button>
         {{else}}
-          <a href="/login">login</a>
+          <a
+            href="/login"
+            class="button is-ghost has-text-white is-size-4"
+          >login</a>
         {{/if}}
       </nav>
     </header>
-    <main>
+    <main class="columns is-flex-direction-column">
       <!-- Render the sub layout -->
       {{{body}}}
     </main>
