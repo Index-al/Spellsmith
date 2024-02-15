@@ -119,13 +119,9 @@ body {
     cursor: pointer;
     outline: none;
 }
-
-/* Style the login button when it is hovered */
 .login-button:hover {
     background: #434343;
 }
-
-/* Style the login button when it is focused */
 .login-button:focus {
     background: #434343;
 }
@@ -174,17 +170,12 @@ body {
     outline: none;
 }
 
-/* Adjust the placeholder color */
 .search-input::placeholder {
     color: #AAAAAA;
 }
-
-/* Style the search input when it is focused */
 .search-input:focus {
     border-color: #777777;
 }
-
-/* Style the search button when it is hovered */
 .search-button:hover {
     background: #F0F0F0;
 }
