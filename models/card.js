@@ -12,21 +12,52 @@ Card.init(
       autoIncrement: true,
     },
     user_id: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: true,
-
+      references: {
+        model: "user",
+        key: "id",
+      },
     },
-    mana_value:{
-        type: DataTypes.INTEGER,
-        allowNull: false
-    }
+    mana_value: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    deck_id: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      references: {
+        model: "deck",
+        key: "id",
+      },
+    },
+    clipboard_id: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      references: {
+        model: "clipboard",
+        key: "id",
+      },
+    },
+    collection_id: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      references: {
+        model: "collection",
+        key: "id",
+      },
+    },
+    name: {
+      type: DataTypes.STRING,
+      allowNule: false,
+    },
   },
   {
     sequelize,
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: "user",
+    modelName: "card",
   }
 );
-module.exports = User;
+module.exports = Card;

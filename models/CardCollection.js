@@ -1,9 +1,10 @@
 const { Model, DataTypes } = require("sequelize");
+
 const sequelize = require("../config/connection");
 
-class Deck extends Model {}
+class CardCollection extends Model {}
 
-Deck.init(
+CardCollection.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -11,23 +12,19 @@ Deck.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    user_id: {
+    card_id: {
       type: DataTypes.INTEGER,
-      allowNull: false,
       references: {
-        model: "user",
+        model: "Card",
         key: "id",
       },
     },
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-
-    is_public: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false,
-      defaultValue: false,
+    collection_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: "Collection",
+        key: "id",
+      },
     },
   },
   {
@@ -35,7 +32,8 @@ Deck.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: "deck",
+    modelName: "card_collection",
   }
 );
-module.exports = Deck;
+
+module.exports = CardCollection;

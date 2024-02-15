@@ -1,9 +1,10 @@
 const { Model, DataTypes } = require("sequelize");
+
 const sequelize = require("../config/connection");
 
-class Deck extends Model {}
+class CardClipboard extends Model {}
 
-Deck.init(
+CardClipboard.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -11,23 +12,19 @@ Deck.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    user_id: {
+    card_id: {
       type: DataTypes.INTEGER,
-      allowNull: false,
       references: {
-        model: "user",
+        model: "Card",
         key: "id",
       },
     },
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-
-    is_public: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false,
-      defaultValue: false,
+    clipboard_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: "Clipboard",
+        key: "id",
+      },
     },
   },
   {
@@ -35,7 +32,8 @@ Deck.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: "deck",
+    modelName: "card_clipboard",
   }
 );
-module.exports = Deck;
+
+module.exports = CardClipboard;
