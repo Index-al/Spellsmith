@@ -11,42 +11,6 @@ Card.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    user_id: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-      references: {
-        model: "user",
-        key: "id",
-      },
-    },
-    mana_value: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    deck_id: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-      references: {
-        model: "deck",
-        key: "id",
-      },
-    },
-    clipboard_id: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-      references: {
-        model: "clipboard",
-        key: "id",
-      },
-    },
-    collection_id: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-      references: {
-        model: "collection",
-        key: "id",
-      },
-    },
     name: {
       type: DataTypes.STRING,
       allowNule: false,
