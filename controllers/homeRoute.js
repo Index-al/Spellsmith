@@ -3,6 +3,7 @@ const sequelize = require("../config/connection");
 const { User } = require("../models");
 const withAuth = require("../utils/auth");
 const { QueryTypes } = require("sequelize");
+const axios = require("axios");
 
 router.get("/", async (req, res) => {
   try {
@@ -75,6 +76,19 @@ router.get("/deck-builder", withAuth, async (req, res) => {
     });
   } catch (err) {
     res.status(500).json(err);
+  }
+});
+
+router.get("/search-result/:searchText", async (req, res) => {
+  const cardSearch = req.params.searchText;
+  try {
+    const apiUrl = `https://api.scryfall.com/cards/search?q=${cardSearch}`;
+    const response = await axios.get(apiUrl);
+    const cardData = response.data.data;
+    console.log(cardData[0].image_uris.normal);
+    res.render("search-result", { cardData });
+  } catch (error) {
+    res.status(400).json(error);
   }
 });
 
