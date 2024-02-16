@@ -1,94 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Magic Deck Builder</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
-  <style>
-    /* Custom styles */
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f6f7f8;
-      margin: 0;
-      padding: 0;
-    }
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Magic Deck Builder</title>
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+		/>
+		<style>
+			/* Custom styles */ body { font-family: Arial, sans-serif;
+			background-color: #f6f7f8; margin: 0; padding: 0; } header {
+			background-color: #361e36; color: white; padding: 20px; } footer {
+			background-color: #361e36; color: #ffffff; padding: 20px; margin-top:
+			20px; } .title { font-weight: bold; color: #361e36; } .subtitle { color:
+			#361e36; } .nav-item { margin-left: 10px; } .nav-item:last-child {
+			margin-right: 0; } main { padding: 20px; }
+		</style>
+	</head>
 
-    header {
-      background-color: #361e36;
-      color: white;
-      padding: 20px;
-    }
+	<body>
+		<header>
+			<div class="container">
+				<div class="columns is-vcentered">
+					<div class="column is-7">
+						<h1 class="title is-2">
+							<a href="/" class="has-text-white">Magic Deck Builder</a>
+						</h1>
+					</div>
+					<div class="column is-5 has-text-right-tablet">
+						<nav>
+							{{#if logged_in}}
+							<a href="/deck-builder" class="nav-item has-text-white">Deck
+								Builder</a>
+							<a href="/collection" class="nav-item has-text-white">My
+								Collection</a>
+								<a href="/account" class="nav-item has-text-white">Account</a>
+								<span class="nav-item has-text-white">|</span>
+								<button
+									id="logout"
+									class="nav-item button is-white"
+								>Logout</button>
+							{{else}}
+								<a href="/login" class="nav-item button is-white">Login</a>
+							{{/if}}
+						</nav>
+					</div>
+				</div>
+			</div>
+		</header>
 
-    footer {
-      background-color: #361e36;
-      color: #ffffff;
-      padding: 20px;
-      margin-top: 20px;
-    }
+		<main>
+			<div class="container">
+				{{{body}}}
+			</div>
+		</main>
 
-    .title {
-      font-weight: bold;
-      color: #361e36;
-    }
-   .subtitle {
-      color: #361e36;
-    }
-    .nav-item {
-      margin-left: 10px;
-    }
+		<footer>
+			<div class="container">
+				<p>&copy; 2024 Magic Deck Builder. All Rights Reserved.</p>
+			</div>
+		</footer>
 
-    .nav-item:last-child {
-      margin-right: 0;
-    }
-
-    main {
-      padding: 20px;
-    }
-  </style>
-</head>
-
-<body>
-  <header>
-    <div class="container">
-      <div class="columns is-vcentered">
-        <div class="column is-7">
-          <h1 class="title is-2">
-            <a href="/" class="has-text-white">Magic Deck Builder</a>
-          </h1>
-        </div>
-        <div class="column is-5 has-text-right-tablet">
-          <nav>
-            {{#if logged_in}}
-            <a href="/account" class="nav-item has-text-white">Account</a>
-            <span class="nav-item has-text-white">|</span>
-            <button id="logout" class="nav-item button is-white">Logout</button>
-            {{else}}
-            <a href="/login" class="nav-item button is-white">Login</a>
-            {{/if}}
-          </nav>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <main>
-    <div class="container">
-      {{{body}}}
-    </div>
-  </main>
-
-  <footer>
-    <div class="container">
-      <p>&copy; 2024 Magic Deck Builder. All Rights Reserved.</p>
-    </div>
-  </footer>
-
-  <!-- Render script for logged in users only -->
-  {{#if logged_in}}
-  <script src="/js/logout.js"></script>
-  {{/if}}
-</body>
+		<!-- Render script for logged in users only -->
+		{{#if logged_in}}
+			<script src="/js/logout.js"></script>
+		{{/if}}
+	</body>
 
 </html>
