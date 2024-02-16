@@ -7,11 +7,29 @@ const axios = require("axios");
 
 router.get("/", async (req, res) => {
   try {
-    // Get all projects and JOIN with user data
+    // Dummy data for featured cards
+    const featuredCards = [
+      {
+        name: "Goblin Guide",
+        set: "Zendikar",
+        imageUrl: "https://cards.scryfall.io/large/front/a/f/afee5464-83b7-4d7a-b407-9ee7de21535b.jpg?1562791607"
+      },
+      {
+        name: "Tarmogoyf",
+        set: "Modern Masters",
+        imageUrl: "https://cards.scryfall.io/large/front/1/f/1f3bb284-d10e-4265-92a4-8dcaf118f3c8.jpg?1561818871"
+      },
+      {
+        name: "Force of Will",
+        set: "Eternal Masters",
+        imageUrl: "https://cards.scryfall.io/large/front/4/2/42f829be-d4f5-4231-a45d-1869222e5e24.jpg?1562908842"
+      }
+    ];
 
     // Pass serialized data and session flag into template
     res.render("homepage", {
       logged_in: req.session.logged_in,
+      featuredCards: featuredCards
     });
   } catch (err) {
     res.status(500).json(err);
