@@ -66,38 +66,6 @@ router.get("/account", withAuth, async (req, res) => {
   }
 });
 
-router.get("/collection", withAuth, async (req, res) => {
-  try {
-    // Find the logged in user based on the session ID
-    const collectionData = await Card.findAll({
-      include: [
-        {
-          model: Collection,
-          through: CardCollection,
-          where: {
-            user_id: req.session.user_id,
-          },
-        },
-      ],
-    });
-    console.log(collectionData[1].dataValues.collections[0]);
-
-    // const collectionData = await User.findByPk(req.session.user_id, {
-    //   include: [{ model: Collection, include: [{ model: Card }] }],
-    //   attributes: { exclude: ["password"] },
-    // });
-
-    // const data = collectionData.get({ plain: true });
-    // console.log(data);
-    // res.render("collection", {
-    //   ...data,
-    //   logged_in: true,
-    // });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
 router.get("/deck-builder", withAuth, async (req, res) => {
   try {
     // Find the logged in user based on the session ID
@@ -108,6 +76,39 @@ router.get("/deck-builder", withAuth, async (req, res) => {
     const user = userData.get({ plain: true });
     res.render("deck-builder", {
       ...user,
+      logged_in: true,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.get("/collection", withAuth, async (req, res) => {
+  try {
+    // Find the logged in user based on the session ID
+    const collectionData = await Card.findAll({
+      include: [
+        {
+          model: Collection,
+        },
+      ],
+    });
+
+    const dataFiltered = collectionData.filter(
+      (card) => card.dataValues.collection_id === req.session.user_id
+    );
+
+    scryfallObjData = [];
+    for (let i = 0; i < dataFiltered.length; i++) {
+      const apiUrl = `https://api.scryfall.com/cards/search?q=${dataFiltered[i].dataValues.name}`;
+      const response = await axios.get(apiUrl);
+      const cardData = response.data.data;
+      scryfallObjData.push(cardData[0]);
+    }
+
+    console.log(scryfallObjData);
+    res.render("collection", {
+      scryfallObjData,
       logged_in: true,
     });
   } catch (err) {

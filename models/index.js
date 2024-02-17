@@ -3,9 +3,6 @@ const Deck = require("./deck");
 const Clipboard = require("./clipboard");
 const Card = require("./card");
 const Collection = require("./collection");
-const CardCollection = require("./CardCollection");
-const CardDeck = require("./CardDeck");
-const CardClipboard = require("./CardClipboard");
 
 User.hasOne(Clipboard, {
   foreignKey: "user_id",
@@ -31,14 +28,29 @@ Deck.belongsTo(User, {
   onDelete: "CASCADE",
 });
 
-Card.belongsToMany(Collection, { through: CardCollection });
-Collection.belongsToMany(Card, { through: CardCollection });
+Collection.hasMany(Card, {
+  foreignKey: "collection_id",
+});
+Card.belongsTo(Collection, {
+  foreignKey: "collection_id",
+  onDelete: "SET NULL",
+});
 
-Card.belongsToMany(Deck, { through: CardDeck });
-Deck.belongsToMany(Card, { through: CardDeck });
+Clipboard.hasMany(Card, {
+  foreignKey: "clipboard_id",
+});
+Card.belongsTo(Clipboard, {
+  foreignKey: "clipboard_id",
+  onDelete: "SET NULL",
+});
 
-Card.belongsToMany(Clipboard, { through: CardClipboard });
-Clipboard.belongsToMany(Card, { through: CardClipboard });
+Deck.hasMany(Card, {
+  foreignKey: "deck_id",
+});
+Card.belongsTo(Deck, {
+  foreignKey: "deck_id",
+  onDelete: "SET NULL",
+});
 
 module.exports = {
   User,
@@ -46,7 +58,4 @@ module.exports = {
   Clipboard,
   Card,
   Collection,
-  CardCollection,
-  CardDeck,
-  CardClipboard,
 };

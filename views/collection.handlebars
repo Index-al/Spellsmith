@@ -1,3 +1,14 @@
-<div class="nothing">
-  <h1>Nothing here yet! (my collection)</h1>
-</div>
+<body>
+  <div class="columns is-flex-wrap-wrap">
+    {{#each scryfallObjData as |card|}}
+      <div class="column is-3">
+        <a href="/search/{{card.name}}" class="box">
+          <img src={{card.image_uris.normal}} />
+        </a>
+      </div>
+
+    {{/each}}
+
+  </div>
+
+</body>
