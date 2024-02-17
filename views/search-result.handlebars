@@ -2,9 +2,9 @@
   <div class="columns is-flex-wrap-wrap">
     {{#each cardData as |card|}}
       <div class="column is-3">
-        <div class="box">
+        <a href="/search/{{card.name}}" class="box">
           <img src={{card.image_uris.normal}} />
-        </div>
+        </a>
       </div>
 
     {{/each}}
