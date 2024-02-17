@@ -1,10 +1,14 @@
 <body>
+  <div class="columns is-flex-wrap-wrap">
+    {{#each cardData as |card|}}
+      <div class="column is-3">
+        <div class="box">
+          <img src={{card.image_uris.normal}} />
+        </div>
+      </div>
 
-  {{#each cardData as |card|}}
-    <div>
-      <img src={{card.image_uris.normal}} />
-    </div>
+    {{/each}}
 
-  {{/each}}
+  </div>
 
 </body>
