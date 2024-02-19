@@ -36,8 +36,10 @@ router.get("/", async (req, res) => {
 
     // Pass the data to the template
     res.render("homepage", {
+      title: "Homepage",
       logged_in: req.session.logged_in,
       featuredCards: validFeaturedCards,
+      is_homepage: true,
     });
   } catch (err) {
     console.error('Error while fetching featured cards:', err);
@@ -52,7 +54,10 @@ router.get("/login", (req, res) => {
     return;
   }
 
-  res.render("login");
+  res.render("login", {
+    title: "Login",
+    is_homepage: false
+  });
 });
 
 router.get("/account", withAuth, async (req, res) => {
@@ -64,8 +69,10 @@ router.get("/account", withAuth, async (req, res) => {
 
     const user = userData.get({ plain: true });
     res.render("account", {
+      title: "Account",
       ...user,
       logged_in: true,
+      is_homepage: false
     });
   } catch (err) {
     res.status(500).json(err);
@@ -81,8 +88,10 @@ router.get("/deck-builder", withAuth, async (req, res) => {
 
     const user = userData.get({ plain: true });
     res.render("deck-builder", {
+      title: "Deck Builder",
       ...user,
       logged_in: true,
+      is_homepage: false
     });
   } catch (err) {
     res.status(500).json(err);
@@ -122,6 +131,7 @@ router.get("/collection", withAuth, async (req, res) => {
   }
 });
 
+// Route to handle searching all cards
 router.get("/search-result/:searchText", async (req, res) => {
 	const cardSearch = req.params.searchText;
 	try {
@@ -158,8 +168,11 @@ router.get("/search/:cardName", async (req, res) => {
 		}
 
     // Render card template with the fetched data
-    res.render("card", { card: cardData,
-      logged_in, });
+    res.render("card", {
+      card: cardData,
+      logged_in,
+      title: "Card Details",
+      is_homepage: false});
   } catch (error) {
     // If the card is not found, Scryfall API will return a 404 status
     if (error.response && error.response.status === 404) {
