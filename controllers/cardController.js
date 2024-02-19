@@ -7,24 +7,21 @@ router.get("/search/:cardName", async (req, res) => {
   const cardName = req.params.cardName;
 
   try {
-    // Scryfall API endpoint and parameters
-    const apiUrl = `https://api.scryfall.com/cards/search?q=${cardName}`;
+    // Use the 'exact' parameter for an exact name match
+    const apiUrl = `https://api.scryfall.com/cards/named?exact=${encodeURIComponent(cardName)}`;
     const response = await axios.get(apiUrl);
     const cardData = response.data;
 
-    // Check if card data was found
-    if (cardData.total_cards > 0) {
-      // console.log(cardData);
-      // // Card data found, render card template
-      // console.log("Card Searched: " + cardData.data[0].name);
-      res.render("card", { card: cardData.data[0] });
-    } else {
-      // No card data found, send 404 error
-      res.status(404).send("Card not found");
-    }
+    // Render card template with the fetched data
+    res.render("card", { card: cardData });
   } catch (error) {
-    console.error(error);
-    res.status(500).send("Error retrieving card data");
+    // If the card is not found, Scryfall API will return a 404 status
+    if (error.response && error.response.status === 404) {
+      res.status(404).send("Card not found");
+    } else {
+      console.error(error);
+      res.status(500).send("Error retrieving card data");
+    }
   }
 });
 
