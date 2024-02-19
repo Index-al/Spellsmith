@@ -4,6 +4,8 @@ const { User, Card, CardCollection, Collection } = require("../models");
 const withAuth = require("../utils/auth");
 const { QueryTypes } = require("sequelize");
 const axios = require("axios");
+const { promisify } = require("util");
+const setTimeoutAsync = promisify(setTimeout);
 
 router.get("/", async (req, res) => {
   try {
@@ -101,12 +103,13 @@ router.get("/collection", withAuth, async (req, res) => {
     scryfallObjData = [];
     for (let i = 0; i < dataFiltered.length; i++) {
       const apiUrl = `https://api.scryfall.com/cards/search?q=${dataFiltered[i].dataValues.name}`;
+      setTimeoutAsync(50);
       const response = await axios.get(apiUrl);
-      const cardData = response.data.data;
+      const cardData = await response.data.data;
       scryfallObjData.push(cardData[0]);
     }
 
-    // console.log(scryfallObjData);
+    console.log(scryfallObjData);
     res.render("collection", {
       scryfallObjData,
       logged_in: true,
@@ -122,7 +125,15 @@ router.get("/search-result/:searchText", async (req, res) => {
     const apiUrl = `https://api.scryfall.com/cards/search?q=${cardSearch}`;
     const response = await axios.get(apiUrl);
     const cardData = response.data.data;
-    console.log(cardData[0].image_uris.normal);
+    const cardImages = [];
+    for (let i = 0; i < cardData.length; i++) {
+      cardImages.push();
+
+      if (!cardData[i].image_uris) {
+        cardImages.push(cardData[i].card_faces[0].image_uris.normal);
+      }
+    }
+    console.log(cardData[3]);
     res.render("search-result", { cardData });
   } catch (error) {
     res.status(400).json(error);
