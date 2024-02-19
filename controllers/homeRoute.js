@@ -4,37 +4,45 @@ const { User, Card, CardCollection, Collection } = require("../models");
 const withAuth = require("../utils/auth");
 const { QueryTypes } = require("sequelize");
 const axios = require("axios");
+const express = require('express');
+
+// Helper function to get a random card from Scryfall API
+const getRandomCard = async () => {
+  try {
+    const response = await axios.get('https://api.scryfall.com/cards/random');
+    const card = response.data;
+    return {
+      name: card.name,
+      set: card.set_name,
+      imageUrl: card.image_uris ? card.image_uris.normal : '' // Fallback in case there's no image
+    };
+  } catch (error) {
+    console.error('Error fetching random card:', error);
+    return null;
+  }
+};
+
 
 router.get("/", async (req, res) => {
   try {
-    // Dummy data for featured cards
-    const featuredCards = [
-      {
-        name: "Goblin Guide",
-        set: "Zendikar",
-        imageUrl:
-          "https://cards.scryfall.io/large/front/a/f/afee5464-83b7-4d7a-b407-9ee7de21535b.jpg?1562791607",
-      },
-      {
-        name: "Tarmogoyf",
-        set: "Modern Masters",
-        imageUrl:
-          "https://cards.scryfall.io/large/front/1/f/1f3bb284-d10e-4265-92a4-8dcaf118f3c8.jpg?1561818871",
-      },
-      {
-        name: "Force of Will",
-        set: "Eternal Masters",
-        imageUrl:
-          "https://cards.scryfall.io/large/front/4/2/42f829be-d4f5-4231-a45d-1869222e5e24.jpg?1562908842",
-      },
-    ];
+    // Fetch 3 random cards
+    const randomCardPromises = [getRandomCard(), getRandomCard(), getRandomCard()];
+    
+    // Wait for all promises to resolve
+    const featuredCards = await Promise.all(randomCardPromises);
 
-    // Pass serialized data and session flag into template
+    // Filter out any null results in case of API fetching errors
+    const validFeaturedCards = featuredCards.filter(card => card != null);
+
+    // Pass the data to the template
     res.render("homepage", {
+      title: "Homepage",
       logged_in: req.session.logged_in,
-      featuredCards: featuredCards,
+      featuredCards: validFeaturedCards,
+      is_homepage: true,
     });
   } catch (err) {
+    console.error('Error while fetching featured cards:', err);
     res.status(500).json(err);
   }
 });
@@ -46,7 +54,10 @@ router.get("/login", (req, res) => {
     return;
   }
 
-  res.render("login");
+  res.render("login", {
+    title: "Login",
+    is_homepage: false
+  });
 });
 
 router.get("/account", withAuth, async (req, res) => {
@@ -58,8 +69,10 @@ router.get("/account", withAuth, async (req, res) => {
 
     const user = userData.get({ plain: true });
     res.render("account", {
+      title: "Account",
       ...user,
       logged_in: true,
+      is_homepage: false
     });
   } catch (err) {
     res.status(500).json(err);
@@ -75,8 +88,10 @@ router.get("/deck-builder", withAuth, async (req, res) => {
 
     const user = userData.get({ plain: true });
     res.render("deck-builder", {
+      title: "Deck Builder",
       ...user,
       logged_in: true,
+      is_homepage: false
     });
   } catch (err) {
     res.status(500).json(err);
@@ -116,16 +131,56 @@ router.get("/collection", withAuth, async (req, res) => {
   }
 });
 
+// Route to handle searching all cards
 router.get("/search-result/:searchText", async (req, res) => {
-  const cardSearch = req.params.searchText;
+	const cardSearch = req.params.searchText;
+	try {
+		const apiUrl = `https://api.scryfall.com/cards/search?q=${cardSearch}`;
+		const response = await axios.get(apiUrl);
+		const cardData = response.data.data;
+		console.log(cardData[0].image_uris.normal);
+		let logged_in = false;
+		if (req.session.logged_in) {
+			logged_in = true;
+		}
+		res.render("search-result", {
+			cardData,
+			logged_in,
+		});
+	} catch (error) {
+		res.status(400).json(error);
+	}
+});
+
+// Route to handle individual card details page
+router.get("/search/:cardName", async (req, res) => {
+  const cardName = req.params.cardName;
+
   try {
-    const apiUrl = `https://api.scryfall.com/cards/search?q=${cardSearch}`;
+    // Use the 'exact' parameter for an exact name match
+    const apiUrl = `https://api.scryfall.com/cards/named?exact=${encodeURIComponent(cardName)}`;
     const response = await axios.get(apiUrl);
-    const cardData = response.data.data;
-    console.log(cardData[0].image_uris.normal);
-    res.render("search-result", { cardData });
+    const cardData = response.data;
+
+    let logged_in = false;
+		if (req.session.logged_in) {
+			logged_in = true;
+		}
+
+    // Render card template with the fetched data
+    res.render("card", {
+      card: cardData,
+      logged_in,
+      title: "Card Details",
+      is_homepage: false});
   } catch (error) {
-    res.status(400).json(error);
+    // If the card is not found, Scryfall API will return a 404 status
+    if (error.response && error.response.status === 404) {
+      res.status(404).send("Card not found");
+    } else {
+      console.error(error);
+      res.status(500).send("Error retrieving card data");
+    }
   }
 });
 
