@@ -123,15 +123,51 @@ router.get("/collection", withAuth, async (req, res) => {
 });
 
 router.get("/search-result/:searchText", async (req, res) => {
-  const cardSearch = req.params.searchText;
+	const cardSearch = req.params.searchText;
+	try {
+		const apiUrl = `https://api.scryfall.com/cards/search?q=${cardSearch}`;
+		const response = await axios.get(apiUrl);
+		const cardData = response.data.data;
+		console.log(cardData[0].image_uris.normal);
+		let logged_in = false;
+		if (req.session.logged_in) {
+			logged_in = true;
+		}
+		res.render("search-result", {
+			cardData,
+			logged_in,
+		});
+	} catch (error) {
+		res.status(400).json(error);
+	}
+});
+
+// Route to handle individual card details page
+router.get("/search/:cardName", async (req, res) => {
+  const cardName = req.params.cardName;
+
   try {
-    const apiUrl = `https://api.scryfall.com/cards/search?q=${cardSearch}`;
+    // Use the 'exact' parameter for an exact name match
+    const apiUrl = `https://api.scryfall.com/cards/named?exact=${encodeURIComponent(cardName)}`;
     const response = await axios.get(apiUrl);
-    const cardData = response.data.data;
-    console.log(cardData[0].image_uris.normal);
-    res.render("search-result", { cardData });
+    const cardData = response.data;
+
+    let logged_in = false;
+		if (req.session.logged_in) {
+			logged_in = true;
+		}
+
+    // Render card template with the fetched data
+    res.render("card", { card: cardData,
+      logged_in, });
   } catch (error) {
-    res.status(400).json(error);
+    // If the card is not found, Scryfall API will return a 404 status
+    if (error.response && error.response.status === 404) {
+      res.status(404).send("Card not found");
+    } else {
+      console.error(error);
+      res.status(500).send("Error retrieving card data");
+    }
   }
 });
 
