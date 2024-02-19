@@ -4,37 +4,43 @@ const { User, Card, CardCollection, Collection } = require("../models");
 const withAuth = require("../utils/auth");
 const { QueryTypes } = require("sequelize");
 const axios = require("axios");
+const express = require('express');
+
+// Helper function to get a random card from Scryfall API
+const getRandomCard = async () => {
+  try {
+    const response = await axios.get('https://api.scryfall.com/cards/random');
+    const card = response.data;
+    return {
+      name: card.name,
+      set: card.set_name,
+      imageUrl: card.image_uris ? card.image_uris.normal : '' // Fallback in case there's no image
+    };
+  } catch (error) {
+    console.error('Error fetching random card:', error);
+    return null;
+  }
+};
+
 
 router.get("/", async (req, res) => {
   try {
-    // Dummy data for featured cards
-    const featuredCards = [
-      {
-        name: "Goblin Guide",
-        set: "Zendikar",
-        imageUrl:
-          "https://cards.scryfall.io/large/front/a/f/afee5464-83b7-4d7a-b407-9ee7de21535b.jpg?1562791607",
-      },
-      {
-        name: "Tarmogoyf",
-        set: "Modern Masters",
-        imageUrl:
-          "https://cards.scryfall.io/large/front/1/f/1f3bb284-d10e-4265-92a4-8dcaf118f3c8.jpg?1561818871",
-      },
-      {
-        name: "Force of Will",
-        set: "Eternal Masters",
-        imageUrl:
-          "https://cards.scryfall.io/large/front/4/2/42f829be-d4f5-4231-a45d-1869222e5e24.jpg?1562908842",
-      },
-    ];
+    // Fetch 3 random cards
+    const randomCardPromises = [getRandomCard(), getRandomCard(), getRandomCard()];
+    
+    // Wait for all promises to resolve
+    const featuredCards = await Promise.all(randomCardPromises);
 
-    // Pass serialized data and session flag into template
+    // Filter out any null results in case of API fetching errors
+    const validFeaturedCards = featuredCards.filter(card => card != null);
+
+    // Pass the data to the template
     res.render("homepage", {
       logged_in: req.session.logged_in,
-      featuredCards: featuredCards,
+      featuredCards: validFeaturedCards,
     });
   } catch (err) {
+    console.error('Error while fetching featured cards:', err);
     res.status(500).json(err);
   }
 });
