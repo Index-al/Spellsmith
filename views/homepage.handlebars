@@ -30,30 +30,34 @@
   </section>
 
   <section class="section">
-    <div class="container">
-      <h2 class="title is-2">Featured Cards</h2>
-      <div class="columns is-multiline">
-        {{#each featuredCards}}
+		<div class="container">
+			<h2 class="title is-2">Featured Cards</h2>
+			<div class="columns is-multiline">
+				{{#each featuredCards}}
           <div class="column is-one-third">
-            <div class="card">
-              <div class="card-image">
-                <figure class="image is-4by3">
-                  <img src="{{this.imageUrl}}" alt="{{this.name}}" />
+            <!-- Wrap the card with an anchor tag that points to the search route with the card's name -->
+            <a href="/search/{{this.name}}" class="card" style="width: 100%; height: auto; padding-top: 30px;">
+              <div class="card-image" style="width: 75%; height: auto; margin: 0 auto;">
+                <figure class="image">
+                  <img src="{{this.imageUrl}}" alt="{{this.name}}" onerror="this.style.display='none'"/>
                 </figure>
               </div>
               <div class="card-content">
                 <div class="media">
-                  <div class="media-content">
-                    <p class="title is-4">{{this.name}}</p>
-                    <p class="subtitle is-6">{{this.set}}</p>
-                  </div>
+                  <div class="media-content has-text-centered">
+										<p class="title is-4">{{this.name}}</p>
+										<p class="subtitle is-6">{{this.set}}</p>
+									</div>
+
                 </div>
               </div>
-            </div>
+            </a>
           </div>
         {{/each}}
-      </div>
-    </div>
-  </section>
+			</div>
+		</div>
+	</section>
+
+
 </main>
 <script src="./js/search.js"></script>

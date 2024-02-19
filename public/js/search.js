@@ -2,9 +2,12 @@ async function searchHandler(e) {
   e.preventDefault();
   const searchText = document.querySelector(".search-input").value.trim();
 
-  document.location.replace(`search-result/${searchText}`);
+  if (searchText) {
+    document.location.replace(`/search-result/${searchText}`);
+  }
 }
 
-document
-  .querySelector(".search-form")
-  .addEventListener("submit", searchHandler);
+const searchForms = document.querySelectorAll(".search-form");
+searchForms.forEach(form => {
+  form.addEventListener("submit", searchHandler);
+});
