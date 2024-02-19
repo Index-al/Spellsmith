@@ -1,4 +1,4 @@
-const { Model, DataTypes } = require("sequelize");
+const { Model, DataTypes, INTEGER } = require("sequelize");
 const sequelize = require("../config/connection");
 
 class Card extends Model {}
@@ -6,14 +6,37 @@ class Card extends Model {}
 Card.init(
   {
     id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
       primaryKey: true,
-      autoIncrement: true,
     },
     name: {
       type: DataTypes.STRING,
-      allowNule: false,
+      allowNull: false,
+    },
+    collection_id: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      reference: {
+        model: "collection",
+        key: "id",
+      },
+    },
+    clipboard_id: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      reference: {
+        model: "clipboard",
+        key: "id",
+      },
+    },
+    deck_id: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      reference: {
+        model: "deck",
+        key: "id",
+      },
     },
   },
   {
