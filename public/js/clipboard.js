@@ -1,8 +1,12 @@
 // This function should toggle the visibility of the clipboard contents
 function toggleClipboard() {
+    console.log("Hitting toggleClipboard()!");
+    const clipboardBar = document.getElementById('clipboard-bar');
     const clipboardContent = document.querySelector('.clipboard-content');
+    clipboardBar.classList.toggle('clipboard-expanded');
     clipboardContent.classList.toggle('is-hidden');
   }
+  
   
 // Function to add a card to the clipboard
 function addToClipboard(cardName) {
@@ -66,7 +70,9 @@ document.querySelectorAll('.add-to-clipboard').forEach(button => {
 });
 
 // Initial call to display cards in the clipboard on page load
-document.addEventListener('DOMContentLoaded', updateClipboardUI);
-
-// Attach the click event listener to the clipboard bar
-document.getElementById('clipboard-bar').addEventListener('click', toggleClipboard);
+document.addEventListener('DOMContentLoaded', function() {
+    const clipboardBar = document.getElementById('clipboard-bar');
+    if (clipboardBar) {
+      clipboardBar.addEventListener('click', toggleClipboard);
+    }
+  });

@@ -16,50 +16,46 @@
     <header>
       {{! Title of the site }}
       <div class="container">
-        <div class="columns is-vcentered">
-          <div class="column is-4">
+        <div class="columns is-vcentered annoying-thing">
+          <div class="column is-4 title-container">
             <h1 class="title"><a href="/" class="has-text-white">Magic Deck Builder</a></h1>
           </div>
-          {{#unless is_homepage}}
+          {{#unless hide_search}}
             {{! Search bar for everywhere but homepage }}
-            <form class="field has-addons search-form">
-              <div class="control is-expanded">
-                <input
-                  class="input is-small search-input"
-                  type="text"
-                  placeholder="Search for cards.."
-                />
-              </div>
-              <div class="control">
-                <button
-                  class="button is-small is-info search-button"
-                  style="background-color: #553055"
-                >
-                  Search
-                </button>
-              </div>
-            </form>
+            <div class="small-search-container">
+              <form class="field has-addons search-form">
+                <div class="control is-expanded">
+                  <input
+                    class="input is-small search-input"
+                    id="small-search-input"
+                    type="text"
+                    placeholder="Search for cards.."
+                  />
+                </div>
+                <div class="control">
+                  <button
+                    class="button is-small is-info search-button " id="small-search-button"
+                  >
+                    Search
+                  </button>
+                </div>
+              </form>
+            </div>
           {{/unless}}
       
-          <div class="column is-5 has-text-right">
+          <div class="column is-5 has-text-right nav-buttons">
             <nav>
               {{#if logged_in}}
-                <a href="/deck-builder" class="nav-item has-text-white">Deck Builder</a>
-                <a href="/collection" class="nav-item has-text-white">My Collection</a>
-                <a href="/account" class="nav-item has-text-white">Account</a>
+                <b><a href="/deck-builder" class="nav-item has-text-white">Deck Builder</a>
+                {{!-- <a href="/collection" class="nav-item has-text-white">My Collection</a> --}}
+                <a href="/my-decks" class="nav-item has-text-white">My Decks</a>
                 <span class="nav-item has-text-white">|</span>
-                <button id="logout" class="nav-item button is-white">Logout</button>
+                <button id="logout" class="nav-item button is-white">Logout</button></b>
               {{else}}
+              {{!-- Show Login button --}}
                 <div class="field has-addons">
                   <div class="control">
-                    <a href="/login" class="button is-white">Login</a>
-                  </div>
-                  <div class="control">
-                    <button class="button is-primary">
-                      <span class="icon is-small">
-                        <i class="fas fa-search"></i>
-                      </span>
-                    </button>
+                    <a href="/login" class="button" id="login">Login</a>
                   </div>
                 </div>
               {{/if}}
@@ -79,11 +75,14 @@
 
     <!-- Clipboard Bar HTML structure -->
     <div id="clipboard-bar" class="clipboard">
-      <div class="clipboard-header">My Card Clipboard</div>
-      <div class="clipboard-content is-hidden">
+      <div class="clipboard-header">
+        My Card Clipboard
+      </div>
+      <div class="clipboard-content">
         <!-- Clipboard items will be dynamically inserted here -->
       </div>
     </div>
+
 
 		<!-- Render script for logged in users only -->
 		{{#if logged_in}}

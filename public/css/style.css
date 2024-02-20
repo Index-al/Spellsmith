@@ -30,8 +30,19 @@ footer {
 	color: #361e36;
 }
 
+.annoying-thing {
+    display: flexbox;
+justify-content: space-between;
+}
+
+.nav-buttons {
+	float: right;
+	text-align: right;
+}
+
 .nav-item {
 	margin-left: 10px;
+    margin-top: -10px;
 }
 
 .nav-item:last-child {
@@ -109,6 +120,35 @@ main {
     background-repeat: repeat;
     background-size: 500px 500px;
 }  */
+
+/* Small search bar css */
+.small-search-container {
+    margin-top: 16px;
+    margin-left: 16px;
+}
+
+/* Logout button style */
+#logout {
+    background-color: rgb(85, 48, 85);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#login {
+    background-color: rgb(85, 48, 85);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
 
 /* Login form styling */
 .login-container {
@@ -193,6 +233,27 @@ main {
     align-items: center;
 }
 
+.title-container {
+    margin-top: -2px;
+}
+
+#small-search-button {
+    background-color: #553055
+}
+
+#small-search-input {
+    background-color: #e3e3e3;
+    transition: background-color 0.5s ease;
+    max-width: 1000px;
+    min-width: 230px;
+}
+
+#small-search-input:hover,
+#small-search-input:focus {
+	background-color: white;
+    transition: background-color 0.5s ease;
+}
+
 /* Style the search input */
 .search-input {
     border: none;
@@ -260,11 +321,29 @@ main {
     color: white;
     text-align: center;
     cursor: pointer;
-    z-index: 100;
-  }
+    z-index: 1000;
+    transition: transform 0.3s;
+}
+
+.clipboard-content {
+    background: rgb(132, 132, 132);
+    display: none;
+    overflow: auto;
+    max-height: 300px;
+}
+
+.clipboard-expanded .clipboard-content {
+    display: block;
+}
+
+.clipboard-expanded {
+    transform: translateY(-100%);
+}
+
 .clipboard-header {
     padding: 10px;
 }
+
 .is-hidden {
     display: none;
 }
@@ -272,8 +351,16 @@ main {
 .card-container {
     position: relative;
     display: inline-block;
-  }
+}
   
+.card-container img {
+    pointer-events: none; /* Prevent image from being clickable */
+}
+
+.card-container:hover .add-to-clipboard {
+    opacity: 1;
+}
+
 .add-to-clipboard {
     position: absolute;
     top: 10px;
@@ -283,21 +370,13 @@ main {
     z-index: 50;
   }
 
-.card-container img {
-    pointer-events: none; /* Prevent image from being clickable */
-}
-
-.card-container:hover .add-to-clipboard {
-    opacity: 1;
-  }
-
 /* Remove button. */
 .remove-button {
-background-color: transparent;
-color: #ff0000;
-border: none;
-font-size: 14px;
-margin-left: 5px;
+    background-color: transparent;
+    color: #ff0000;
+    border: none;
+    font-size: 14px;
+    margin-left: 5px;
 }
 
 .results-exp {
