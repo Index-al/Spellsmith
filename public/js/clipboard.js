@@ -4,6 +4,9 @@ function toggleClipboard() {
     const arrow = document.getElementById('clipboard-arrow');
     const trash = document.getElementById('clear-clipboard');
     const copy = document.getElementById('copy-clipboard');
+    const buy = document.getElementById('buy-clipboard');
+    const info = document.getElementById('clipboard-info');
+    const infoExtended = document.getElementById('info-extended');
     clipboardBar.classList.toggle('clipboard-expanded');
 
     // Toggle arrow direction
@@ -11,10 +14,16 @@ function toggleClipboard() {
         arrow.textContent = '↓'; // Show down arrow when expanded
         trash.textContent = '🗑️' // Show trash when expanded
         copy.textContent = '📋' // Show copy when expanded
+        buy.textContent = '🛒' // Show buy when expanded
+        info.textContent = 'Clear - Buy - Copy' // Show info when expanded
+        infoExtended.textContent = `If you'd like to purchase all the cards in your clipboard, first hit the "Copy" button, then paste your cards into the mass card entry after clicking the "Shop" button.` // Show info when expanded
     } else {
         arrow.textContent = '↑'; // Up arrow when collapsed
         trash.textContent = '' // Hide trash when collapsed
         copy.textContent = '' // Hide copy when collapsed
+        buy.textContent = '' // Hide buy when collapsed
+        info.textContent = '' // Hide info when collapsed
+        infoExtended.textContent = '' // Hide info when collapsed
     }
 }
 
@@ -79,18 +88,31 @@ function clearAllClipboard(event) {
     updateAddToClipboardButtons(); // Update the add to clipboard buttons
 }
 
+function openTCGPlayerMassEntry() {
+    window.open('https://www.tcgplayer.com/massentry', '_blank');
+}
+
 // Function to copy the clipboard content to the user's computer clipboard
 function copyClipboardContent() {
     const clipboard = JSON.parse(localStorage.getItem('cardClipboard')) || [];
     const formattedText = clipboard.map(cardName => `1 ${cardName}`).join('\n');
+    const copyButton = document.getElementById('copy-clipboard'); // Get the copy button
     
     // Use the Clipboard API to copy the text
     navigator.clipboard.writeText(formattedText).then(() => {
     console.log('Clipboard content copied!');
+
+    // Change button text for visual feedback
+    copyButton.textContent = 'Copied!'; // Change button text
+
+    // Set a timeout to revert the button back to its original state
+    setTimeout(() => {
+        copyButton.textContent = '📋'; // Revert button text
+    }, 2000); // 2000 milliseconds = 2 seconds
     }).catch(err => {
     console.error('Failed to copy: ', err);
     });
-}
+}  
 
 // Function to add or update add-to-clipboard buttons for each card
 function updateAddToClipboardButtons() {
@@ -147,9 +169,16 @@ document.addEventListener('DOMContentLoaded', function() {
     const clipboardBar = document.getElementById('clipboard-bar');
     const clearButton = document.getElementById('clear-clipboard');
     const copyButton = document.getElementById('copy-clipboard');
+    const buyButton = document.getElementById('buy-clipboard');
+
     if (clipboardBar) {
       clipboardBar.addEventListener('click', toggleClipboard);
     }
+
+    if (buyButton) {
+        buyButton.addEventListener('click', openTCGPlayerMassEntry);
+    }
+
     updateAddToClipboardButtons();
     updateClipboardUI();
 

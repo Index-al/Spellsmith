@@ -1,5 +1,8 @@
 /* Custom styles */
 
+/* Import fonts */
+@import url('https://fonts.googleapis.com/css2?family=Cutive+Mono&display=swap');
+
 /* Remove scrollbar across site for more minimalistic look/feel */
 * {
 	-ms-overflow-style: none;
@@ -358,7 +361,9 @@ main {
 
 .clipboard-header {
 	padding: 10px;
-    position: relative;
+	position: relative;
+	font-size: 18px;
+	font-family: "Cutive Mono", monospace;
 }
 
 .clipboard-arrow {
@@ -380,11 +385,46 @@ main {
 
 .copy-clipboard {
     position: absolute;
+    left: 120px;
+    transition: transform 0.3s;
+    font-size: 22px;
+    margin-top: -6px;
+    cursor: pointer;
+}
+
+.buy-clipboard {
+    position: absolute;
     left: 70px;
     transition: transform 0.3s;
     font-size: 22px;
     margin-top: -6px;
     cursor: pointer;
+}
+
+.clipboard-info {
+    position: absolute;
+    left: 5px;
+    transition: transform 0.3s;
+    font-size: 14px;
+    margin-top: 38px;
+    cursor: pointer;
+}
+
+.clipboard-item {
+    margin-top: 4px;
+    font-size: 16px;
+}
+
+.info-extended {
+    position: absolute;
+    left: 24px;
+    transition: transform 0.3s;
+    font-size: 14px;
+    cursor: pointer;
+    max-width: calc(30% - 150px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top: 90px;
 }
 
 /* .is-hidden {
