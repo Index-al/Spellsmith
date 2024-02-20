@@ -2,7 +2,7 @@ async function saveToCollection(e) {
   e.preventDefault();
   const id = e.target.getAttribute("card-id");
   const name = e.target.getAttribute("card-name");
-
+  console.log(name);
   const response = await fetch("/api/cards/", {
     method: "POST",
     body: JSON.stringify({ id, name }),
@@ -17,6 +17,8 @@ async function saveToCollection(e) {
   }
 }
 
-document
-  .querySelector(".collection")
-  .addEventListener("click", saveToCollection);
+const collectionButtons = document.querySelectorAll(".collection");
+
+collectionButtons.forEach((button) => {
+  button.addEventListener("click", saveToCollection);
+});
