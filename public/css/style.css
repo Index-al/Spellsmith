@@ -1,5 +1,15 @@
 /* Custom styles */
 
+/* Remove scrollbar across site for more minimalistic look/feel */
+* {
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+}
+
+*::-webkit-scrollbar {
+	display: none;
+}
+
 body {
 	font-family: "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans",
 		"Droid Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -313,40 +323,64 @@ main {
     transform: translate(-50%, -50%);
 }
 
+
+/* CLIPBOARD CSS */
 .clipboard {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    background-color: rgba(54, 30, 54, 0.8);
-    color: white;
-    text-align: center;
-    cursor: pointer;
-    z-index: 1000;
-    transition: transform 0.3s;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	background-color: rgba(54, 30, 54, 0.8);
+	color: white;
+	text-align: center;
+	cursor: pointer;
+	z-index: 1000;
+	transition: transform 0.3s ease-in-out;
 }
 
 .clipboard-content {
-    background: rgb(132, 132, 132);
-    display: none;
-    overflow: auto;
-    max-height: 300px;
+	background: rgb(45, 45, 45, 0.65);
+	display: none;
+	overflow: auto;
+	max-height: 300px;
+	transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+	scrollbar-width: thin;
+	scrollbar-color: #999999 transparent;
 }
 
 .clipboard-expanded .clipboard-content {
-    display: block;
+	display: block;
 }
 
 .clipboard-expanded {
-    transform: translateY(-100%);
+	transform: translateY(calc(-1 * var(300px)));
+    background-color: rgba(54, 30, 54, 0.95);
 }
 
 .clipboard-header {
-    padding: 10px;
+	padding: 10px;
+    position: relative;
 }
 
-.is-hidden {
-    display: none;
+.clipboard-arrow {
+    position: absolute;
+    right: 20px;
+    transition: transform 0.3s;
+    font-size: 28px;
+    margin-top: -12px;
 }
+
+.clear-clipboard {
+    position: absolute;
+    left: 20px;
+    transition: transform 0.3s;
+    font-size: 22px;
+    margin-top: -6px;
+    cursor: pointer;
+}
+
+/* .is-hidden {
+    display: none;
+} */
 
 .card-container {
     position: relative;

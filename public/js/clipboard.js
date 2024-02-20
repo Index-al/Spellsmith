@@ -1,13 +1,19 @@
 // This function should toggle the visibility of the clipboard contents
 function toggleClipboard() {
-    console.log("Hitting toggleClipboard()!");
     const clipboardBar = document.getElementById('clipboard-bar');
-    const clipboardContent = document.querySelector('.clipboard-content');
+    const arrow = document.getElementById('clipboard-arrow');
     clipboardBar.classList.toggle('clipboard-expanded');
-    clipboardContent.classList.toggle('is-hidden');
-  }
-  
-  
+
+    // Toggle arrow direction
+    if (clipboardBar.classList.contains('clipboard-expanded')) {
+        console.log("Hitting arrow down!");
+        arrow.textContent = '↓'; // Down arrow when expanded
+    } else {
+        console.log("Hitting arrow up!");
+        arrow.textContent = '↑'; // Up arrow when collapsed
+    }
+}
+
 // Function to add a card to the clipboard
 function addToClipboard(cardName) {
     let clipboard = JSON.parse(localStorage.getItem('cardClipboard')) || [];
@@ -59,6 +65,12 @@ function removeFromClipboard(cardName) {
     updateClipboardUI();
 }
 
+function clearAllClipboard(event) {
+    event.stopPropagation(); // Prevent the clipboard from toggling when the trash can is clicked
+    localStorage.setItem('cardClipboard', JSON.stringify([])); // Clear the clipboard
+    updateClipboardUI(); // Refresh the UI
+  }  
+
 // Attach event listeners to add-to-clipboard buttons
 document.querySelectorAll('.add-to-clipboard').forEach(button => {
     button.addEventListener('click', function(event) {
@@ -75,4 +87,5 @@ document.addEventListener('DOMContentLoaded', function() {
     if (clipboardBar) {
       clipboardBar.addEventListener('click', toggleClipboard);
     }
+    updateClipboardUI();
   });
