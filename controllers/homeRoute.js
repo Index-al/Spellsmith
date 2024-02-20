@@ -44,7 +44,7 @@ router.get("/", async (req, res) => {
       title: "Homepage",
       logged_in: req.session.logged_in,
       featuredCards: validFeaturedCards,
-      is_homepage: true,
+      hide_search: true,
     });
   } catch (err) {
     console.error("Error while fetching featured cards:", err);
@@ -55,17 +55,19 @@ router.get("/", async (req, res) => {
 router.get("/login", (req, res) => {
   // If the user is already logged in, redirect the request to another route
   if (req.session.logged_in) {
-    res.redirect("/account");
+    // Make sure session data is refreshed
+    res.redirect("/my-decks");
     return;
   }
 
   res.render("login", {
     title: "Login",
-    is_homepage: false,
+    hide_search: true // Don't show search bar on login page
+
   });
 });
 
-router.get("/account", withAuth, async (req, res) => {
+router.get("/my-decks", withAuth, async (req, res) => {
   try {
     // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.session.user_id, {
@@ -73,11 +75,12 @@ router.get("/account", withAuth, async (req, res) => {
     });
 
     const user = userData.get({ plain: true });
-    res.render("account", {
-      title: "Account",
+    res.render("my-decks", {
+      title: "My Decks",
       ...user,
       logged_in: true,
-      is_homepage: false,
+
+      hide_search: false
     });
   } catch (err) {
     res.status(500).json(err);
@@ -96,7 +99,7 @@ router.get("/deck-builder", withAuth, async (req, res) => {
       title: "Deck Builder",
       ...user,
       logged_in: true,
-      is_homepage: false,
+      hide_search: false
     });
   } catch (err) {
     res.status(500).json(err);
@@ -187,8 +190,7 @@ router.get("/search/:cardName", async (req, res) => {
       card: cardData,
       logged_in,
       title: "Card Details",
-      is_homepage: false,
-    });
+      hide_search: false});
   } catch (error) {
     // If the card is not found, Scryfall API will return a 404 status
     if (error.response && error.response.status === 404) {

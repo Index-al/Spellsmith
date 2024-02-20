@@ -8,65 +8,54 @@
 			rel="stylesheet"
 			href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
 		/>
-		<style>
-			/* Custom styles */ body { font-family: Arial, sans-serif;
-			background-color: #f6f7f8; margin: 0; padding: 0; } header {
-			background-color: #361e36; color: white; padding: 20px; } footer {
-			background-color: #361e36; color: #ffffff; padding: 20px; margin-top:
-			20px; } .title { font-weight: bold; color: #361e36; } .subtitle { color:
-			#361e36; } .nav-item { margin-left: 10px; } .nav-item:last-child {
-			margin-right: 0; } main { padding: 20px; }
-		</style>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
+    <link rel="stylesheet" href="/css/style.css" />
 	</head>
 
 	<body>
     <header>
       {{! Title of the site }}
       <div class="container">
-        <div class="columns is-vcentered">
-          <div class="column is-4">
+        <div class="columns is-vcentered annoying-thing">
+          <div class="column is-4 title-container">
             <h1 class="title"><a href="/" class="has-text-white">Magic Deck Builder</a></h1>
           </div>
-          {{#unless is_homepage}}
+          {{#unless hide_search}}
             {{! Search bar for everywhere but homepage }}
-            <form class="field has-addons search-form">
-              <div class="control is-expanded">
-                <input
-                  class="input is-small search-input"
-                  type="text"
-                  placeholder="Search for cards.."
-                />
-              </div>
-              <div class="control">
-                <button
-                  class="button is-small is-info search-button"
-                  style="background-color: #553055"
-                >
-                  Search
-                </button>
-              </div>
-            </form>
+            <div class="small-search-container">
+              <form class="field has-addons search-form">
+                <div class="control is-expanded">
+                  <input
+                    class="input is-small search-input"
+                    id="small-search-input"
+                    type="text"
+                    placeholder="Search for cards.."
+                  />
+                </div>
+                <div class="control">
+                  <button
+                    class="button is-small is-info search-button " id="small-search-button"
+                  >
+                    Search
+                  </button>
+                </div>
+              </form>
+            </div>
           {{/unless}}
       
-          <div class="column is-5 has-text-right">
+          <div class="column is-5 has-text-right nav-buttons">
             <nav>
               {{#if logged_in}}
-                <a href="/deck-builder" class="nav-item has-text-white">Deck Builder</a>
-                <a href="/collection" class="nav-item has-text-white">My Collection</a>
-                <a href="/account" class="nav-item has-text-white">Account</a>
+                <b><a href="/deck-builder" class="nav-item has-text-white">Deck Builder</a>
+                {{!-- <a href="/collection" class="nav-item has-text-white">My Collection</a> --}}
+                <a href="/my-decks" class="nav-item has-text-white">My Decks</a>
                 <span class="nav-item has-text-white">|</span>
-                <button id="logout" class="nav-item button is-white">Logout</button>
+                <button id="logout" class="nav-item button is-white">Logout</button></b>
               {{else}}
+              {{!-- Show Login button --}}
                 <div class="field has-addons">
                   <div class="control">
-                    <a href="/login" class="button is-white">Login</a>
-                  </div>
-                  <div class="control">
-                    <button class="button is-primary">
-                      <span class="icon is-small">
-                        <i class="fas fa-search"></i>
-                      </span>
-                    </button>
+                    <a href="/login" class="button" id="login">Login</a>
                   </div>
                 </div>
               {{/if}}
@@ -76,26 +65,37 @@
         </div>
       </div>
     </header>
-</body>
 
-
+{{!-- MAIN PAGE CONTENT --}}
 		<main>
 			<div class="container">
 				{{{body}}}
 			</div>
 		</main>
 
-		{{! <footer>
-      <div class="container">
-        <p>&copy; 2024 Magic Deck Builder. All Rights Reserved.</p>
+    <!-- Clipboard Bar HTML structure -->
+    <div id="clipboard-bar" class="clipboard">
+      <div class="clipboard-header">
+        <span id="clear-clipboard" class="clear-clipboard" onclick="clearAllClipboard(event)"></span>
+        <span id="copy-clipboard" class="copy-clipboard"></span>
+        <span id="buy-clipboard" class="buy-clipboard"></span>
+        <span id="clipboard-info" class="clipboard-info"></span>
+        <div id="info-extended" class="info-extended"></div>
+        ✏️ My Card Clipboard
+        <span id="clipboard-arrow" class="clipboard-arrow">↑</span>
       </div>
-    </footer> }}
+      <div class="clipboard-content">
+        <!-- Clipboard items will be dynamically inserted here -->
+      </div>
+    </div>
+
 
 		<!-- Render script for logged in users only -->
 		{{#if logged_in}}
 			<script src="/js/logout.js"></script>
 		{{/if}}
     <script src="/js/search.js"></script>
+    <script src="/js/clipboard.js"></script>
 	</body>
 
 </html>

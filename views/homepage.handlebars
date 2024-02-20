@@ -40,6 +40,11 @@
               <div class="card-image" style="width: 75%; height: auto; margin: 0 auto;">
                 <figure class="image">
                   <img src="{{this.imageUrl}}" alt="{{this.name}}" onerror="this.style.display='none'"/>
+                  {{! Add to clipboard button }}
+                  <button
+                  class="add-to-clipboard"
+                  data-card-name="{{this.name}}"
+                  >+</button>
                 </figure>
               </div>
               <div class="card-content">
