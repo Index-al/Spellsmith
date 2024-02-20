@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>MTG Card Details</title>
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
+		/>
+		<style>
+			.card-container { display: flex; align-items: center; justify-content:
+			center; margin-top: 2rem; } .card-image { width: 300px; height: auto;
+			margin-right: 2rem; } .card-details { flex-grow: 1; } .card-name {
+			font-size: 1.5rem; font-weight: bold; margin-bottom: 0.5rem; } .card-type
+			{ font-size: 1rem; margin-bottom: 0.5rem; } .card-text { margin-bottom:
+			0.5rem; } .card-flavor { font-style: italic; margin-bottom: 0.5rem; }
+			.card-artist { margin-bottom: 0.5rem; } .card-price { font-weight: bold; }
+		</style>
+	</head>
+
+	{{! This is the main body of the page containing the card details }}
+	<body>
+    <div class="container">
+        <div class="card-container">
+                {{!-- CARD IMAGE --}}
+            <div class="card-image">
+                <img src="{{card.image_uris.normal}}" alt="{{card.name}}" />
+            </div>
+              {{!-- CARD NAME, TYPE, TEXT, FLAVOR, ARTIST, PRICE --}}
+            <div class="card-details">
+                <h1 class="card-name">{{card.name}}</h1>
+
+                <p>Type: </p>
+                <p class="card-type">{{card.type_line}}</p>
+
+                <p>Text: </p>
+                <p class="card-text">{{card.oracle_text}}</p>
+                {{#if card.flavor_text}}
+
+                <p>Flavor Text: </p>
+                    <p class="card-flavor">{{card.flavor_text}}</p> 
+                {{/if}}
+
+                <p>Artist: </p>
+                <p class="card-artist">{{card.artist}}</p>
+
+                <p>Price: </p>
+                <p class="card-price">${{card.prices.usd}}</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

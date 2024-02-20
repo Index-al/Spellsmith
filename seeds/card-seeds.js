@@ -2,31 +2,28 @@ const { Card } = require("../models");
 
 const cardData = [
   {
-    user_id: 1,
-    mana_value: 4,
-    deck_id: null,
-    clipboard_id: null,
-    collection_id: null,
-    name: "dragon",
+    id: "a31ffc9e-d21b-4a8f-ac67-695e38e09e3b",
+    name: "Austere Command",
+    collection_id: 1,
+    clipboard_id: 1,
+    deck_id: 1,
   },
   {
-    user_id: 2,
-    mana_value: 4,
-    deck_id: null,
-    clipboard_id: null,
-    collection_id: null,
-    name: "land",
+    id: "afee5464-83b7-4d7a-b407-9ee7de21535b.jpg?1562791607",
+    name: "Goblin Guide",
+    collection_id: 1,
+    clipboard_id: 1,
+    deck_id: 1,
   },
   {
-    user_id: 3,
-    mana_value: 4,
-    deck_id: null,
-    clipboard_id: null,
-    collection_id: null,
-    name: "artifact",
+    id: "42f829be-d4f5-4231-a45d-1869222e5e24.jpg?1562908842",
+    name: "Force of Will",
+    collection_id: 1,
+    clipboard_id: 1,
+    deck_id: 1,
   },
 ];
 
-const seedCards = () => Card.bulkCreate(cardData);
+const seedCards = async () => Card.bulkCreate(cardData);
 
 module.exports = seedCards;

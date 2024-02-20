@@ -1,6 +1,6 @@
 <body>
   <div class="columns is-flex-wrap-wrap">
-    {{#each scryfallObjData as |card|}}
+    {{#each cardData as |card|}}
       <div class="column is-3">
         <a href="/search/{{card.name}}" class="box">
           <img src={{card.image_uris.normal}} />
