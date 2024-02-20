@@ -60,13 +60,26 @@
         </div>
         <div class="column is-5 has-text-right-tablet">
           <nav>
-            {{#if logged_in}}
+             <div class="field-body">
+                <div class="field has-addons">
+                  <div class="control">
+                    <input class="input is-medium" type="text" placeholder="Search for cards">
+                  </div>
+                  {{!-- <div class="control">
+                    <button class="button is-medium is-info" style="background-color: #361e36">
+                      Search
+                    </button>
+                  </div> --}}
+                </div>
+                 {{#if logged_in}}
             <a href="/account" class="nav-item has-text-white">Account</a>
             <span class="nav-item has-text-white">|</span>
             <button id="logout" class="nav-item button is-white">Logout</button>
             {{else}}
             <a href="/login" class="nav-item button is-white">Login</a>
             {{/if}}
+              </div>
+           
           </nav>
         </div>
       </div>
@@ -78,8 +91,11 @@
       {{{body}}}
     </div>
   </main>
-
+  <br />
+    <br />
+    <br />
   <footer>
+  
     <div class="container">
       <p>&copy; 2024 Magic Deck Builder. All Rights Reserved.</p>
     </div>
