@@ -34,6 +34,30 @@ footer {
 	margin-top: 20px;
 }
 
+.brand-logo {
+	position: absolute;
+	top: -50px;
+	left: -110px;
+	width: 200px;
+	height: 200px;
+}
+
+.brand-text {
+	position: absolute;
+	color: #ffffff;
+	top: 5px;
+	left: 35px;
+	font-size: 42px;
+
+	transition: color 0.3s ease-in-out;
+}
+
+.brand-text:hover {
+    color: #ffffff;
+	text-shadow: 0 0 10px #ffd700;
+}
+
+
 .title {
 	font-weight: bold;
 	color: #361e36;
@@ -371,39 +395,39 @@ main {
     right: 20px;
     transition: transform 0.3s;
     font-size: 28px;
-    margin-top: -12px;
+    margin-top: -6px;
 }
 
 .clear-clipboard {
     position: absolute;
-    left: 20px;
+    left: 47px;
     transition: transform 0.3s;
     font-size: 22px;
-    margin-top: -6px;
+    margin-top: 0px;
     cursor: pointer;
 }
 
 .copy-clipboard {
     position: absolute;
-    left: 120px;
+    left: 163px;
     transition: transform 0.3s;
     font-size: 22px;
-    margin-top: -6px;
+    margin-top: 0px;
     cursor: pointer;
 }
 
 .buy-clipboard {
     position: absolute;
-    left: 70px;
+    left: 106px;
     transition: transform 0.3s;
     font-size: 22px;
-    margin-top: -6px;
+    margin-top: 0px;
     cursor: pointer;
 }
 
 .clipboard-info {
     position: absolute;
-    left: 5px;
+    left: 40px;
     transition: transform 0.3s;
     font-size: 14px;
     margin-top: 38px;
