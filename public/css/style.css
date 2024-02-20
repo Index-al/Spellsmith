@@ -1,3 +1,47 @@
+/* Custom styles */
+
+body {
+	font-family: "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans",
+		"Droid Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	background-color: #f6f7f8;
+	margin: 0;
+	padding: 0;
+}
+
+header {
+	background-color: #361e36;
+	color: white;
+	padding: 20px;
+}
+
+footer {
+	background-color: #361e36;
+	color: #ffffff;
+	padding: 20px;
+	margin-top: 20px;
+}
+
+.title {
+	font-weight: bold;
+	color: #361e36;
+}
+
+.subtitle {
+	color: #361e36;
+}
+
+.nav-item {
+	margin-left: 10px;
+}
+
+.nav-item:last-child {
+	margin-right: 0;
+}
+
+main {
+	padding: 20px;
+}
+/* 
 .navbar {
   position: fixed;
   top: 0;
@@ -60,11 +104,11 @@
 }
 
 /* Background */
-body {
+/* body {
     background-image: url('../assets/hexagon_bg.png');
     background-repeat: repeat;
     background-size: 500px 500px;
-}
+}  */
 
 /* Login form styling */
 .login-container {
@@ -207,3 +251,19 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+.clipboard {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(54, 30, 54, 0.8);
+    color: white;
+    text-align: center;
+    cursor: pointer;
+  }
+  .clipboard-header {
+    padding: 10px;
+  }
+  .is-hidden {
+    display: none;
+  }

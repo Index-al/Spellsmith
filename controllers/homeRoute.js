@@ -50,7 +50,9 @@ router.get("/", async (req, res) => {
 router.get("/login", (req, res) => {
   // If the user is already logged in, redirect the request to another route
   if (req.session.logged_in) {
-    res.redirect("/account");
+    res.redirect("/");
+    // Reload the page to reset the session
+    res.redirect(req.get('referer'));
     return;
   }
 

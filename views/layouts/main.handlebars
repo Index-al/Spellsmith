@@ -8,15 +8,8 @@
 			rel="stylesheet"
 			href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
 		/>
-		<style>
-			/* Custom styles */ body { font-family: Arial, sans-serif;
-			background-color: #f6f7f8; margin: 0; padding: 0; } header {
-			background-color: #361e36; color: white; padding: 20px; } footer {
-			background-color: #361e36; color: #ffffff; padding: 20px; margin-top:
-			20px; } .title { font-weight: bold; color: #361e36; } .subtitle { color:
-			#361e36; } .nav-item { margin-left: 10px; } .nav-item:last-child {
-			margin-right: 0; } main { padding: 20px; }
-		</style>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
+    <link rel="stylesheet" href="/css/style.css" />
 	</head>
 
 	<body>
@@ -76,26 +69,28 @@
         </div>
       </div>
     </header>
-</body>
 
-
+{{!-- MAIN PAGE CONTENT --}}
 		<main>
 			<div class="container">
 				{{{body}}}
 			</div>
 		</main>
 
-		{{! <footer>
-      <div class="container">
-        <p>&copy; 2024 Magic Deck Builder. All Rights Reserved.</p>
-      </div>
-    </footer> }}
+    <!-- Clipboard Bar -->
+    <div id="clipboard-bar" class="clipboard">
+      <div class="clipboard-header" onclick="toggleClipboard()">Card Clipboard</div>
+    <div id="clipboard-content" class="is-hidden">
+    <!-- Cards will be dynamically added here -->
+    </div>
+    </div>
 
 		<!-- Render script for logged in users only -->
 		{{#if logged_in}}
 			<script src="/js/logout.js"></script>
 		{{/if}}
     <script src="/js/search.js"></script>
+    <script src="/js/clipboard.js"></script>
 	</body>
 
 </html>
