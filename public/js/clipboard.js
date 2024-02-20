@@ -2,13 +2,19 @@
 function toggleClipboard() {
     const clipboardBar = document.getElementById('clipboard-bar');
     const arrow = document.getElementById('clipboard-arrow');
+    const trash = document.getElementById('clear-clipboard');
+    const copy = document.getElementById('copy-clipboard');
     clipboardBar.classList.toggle('clipboard-expanded');
 
     // Toggle arrow direction
     if (clipboardBar.classList.contains('clipboard-expanded')) {
         arrow.textContent = '↓'; // Down arrow when expanded
+        trash.textContent = '🗑️' // Show trash when expanded
+        copy.textContent = '📋' // Show copy when expanded
     } else {
         arrow.textContent = '↑'; // Up arrow when collapsed
+        trash.textContent = '' // Hide trash when collapsed
+        copy.textContent = '' // Hide copy when collapsed
     }
 }
 
