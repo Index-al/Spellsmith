@@ -1,10 +1,49 @@
 <body>
   <div class="columns is-flex-wrap-wrap">
     {{#each cardData as |card|}}
-      <div class="column is-3">
-        <a href="/search/{{card.name}}" class="box">
+      <div class="column is-3 box has-text-centered">
+        <a href="/search/{{card.name}}">
           <img src={{card.image_uris.normal}} />
         </a>
+
+        <div class="dropdown">
+          <div class="dropdown-trigger">
+            <button
+              class="button"
+              aria-haspopup="true"
+              aria-controls="dropdown-menu3"
+              onclick="this.parentNode.parentNode.classList.toggle('is-active')"
+            >
+              <span>Add Card to:</span>
+              <span class="icon is-small">
+                <i class="fas fa-angle-down" aria-hidden="false"></i>
+              </span>
+            </button>
+          </div>
+          <div class="dropdown-menu" id="dropdown-menu3" role="menu">
+            <div class="dropdown-content">
+              <button
+                cardId="{{card.id}}"
+                class="button is-ghost for-collection"
+              >Collection</button>
+              <button
+                cardId="{{card.id}}"
+                class="button is-ghost for-clipboard"
+              >Clipboard</button>
+
+              {{#each decks as |deck|}}
+                <button
+                  cardId="{{card.id}}"
+                  deck_id="{{deck.name}}"
+                  class="button"
+                >
+                  TEST
+                </button>
+              {{/each}}
+
+            </div>
+          </div>
+        </div>
       </div>
 
     {{/each}}
@@ -12,3 +51,4 @@
   </div>
 
 </body>
+{{! <script src="./js/savecard.js"></script> }}

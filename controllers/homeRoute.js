@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const sequelize = require("../config/connection");
-const { User, Card, CardCollection, Collection } = require("../models");
+const { User, Card, Deck, Collection } = require("../models");
 const withAuth = require("../utils/auth");
 const { QueryTypes } = require("sequelize");
 const axios = require("axios");
@@ -151,13 +151,24 @@ router.get("/search-result/:searchText", async (req, res) => {
         cardData[i].image_uris = cardData[i].card_faces[0].image_uris;
       }
     }
-    console.log(cardData[3]);
     let logged_in = false;
     if (req.session.logged_in) {
       logged_in = true;
     }
+    let decks = [];
+    if (logged_in) {
+      const deckData = await Deck.findAll({
+        where: {
+          user_id: req.session.user_id,
+        },
+      });
+      decks = deckData.map((deck) => deck.get({ plain: true }));
+    }
+
+    console.log(decks);
     res.render("search-result", {
       cardData,
+      decks,
       logged_in,
     });
   } catch (error) {
