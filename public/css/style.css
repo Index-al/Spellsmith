@@ -378,6 +378,15 @@ main {
     cursor: pointer;
 }
 
+.copy-clipboard {
+    position: absolute;
+    left: 70px;
+    transition: transform 0.3s;
+    font-size: 22px;
+    margin-top: -6px;
+    cursor: pointer;
+}
+
 /* .is-hidden {
     display: none;
 } */

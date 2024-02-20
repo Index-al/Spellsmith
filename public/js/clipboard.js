@@ -6,10 +6,8 @@ function toggleClipboard() {
 
     // Toggle arrow direction
     if (clipboardBar.classList.contains('clipboard-expanded')) {
-        console.log("Hitting arrow down!");
         arrow.textContent = '↓'; // Down arrow when expanded
     } else {
-        console.log("Hitting arrow up!");
         arrow.textContent = '↑'; // Up arrow when collapsed
     }
 }
@@ -69,7 +67,19 @@ function clearAllClipboard(event) {
     event.stopPropagation(); // Prevent the clipboard from toggling when the trash can is clicked
     localStorage.setItem('cardClipboard', JSON.stringify([])); // Clear the clipboard
     updateClipboardUI(); // Refresh the UI
-  }  
+}
+
+function copyClipboardContent() {
+    const clipboard = JSON.parse(localStorage.getItem('cardClipboard')) || [];
+    const formattedText = clipboard.map(cardName => `1 ${cardName}`).join('\n');
+    
+    // Use the Clipboard API to copy the text
+    navigator.clipboard.writeText(formattedText).then(() => {
+    console.log('Clipboard content copied!');
+    }).catch(err => {
+    console.error('Failed to copy: ', err);
+    });
+}
 
 // Attach event listeners to add-to-clipboard buttons
 document.querySelectorAll('.add-to-clipboard').forEach(button => {
@@ -84,8 +94,21 @@ document.querySelectorAll('.add-to-clipboard').forEach(button => {
 // Initial call to display cards in the clipboard on page load
 document.addEventListener('DOMContentLoaded', function() {
     const clipboardBar = document.getElementById('clipboard-bar');
+    const clearButton = document.getElementById('clear-clipboard');
+    const copyButton = document.getElementById('copy-clipboard');
     if (clipboardBar) {
       clipboardBar.addEventListener('click', toggleClipboard);
     }
     updateClipboardUI();
+
+    clearButton.addEventListener('click', function(event) {
+        event.stopPropagation(); // Prevent the clipboard from toggling
+        localStorage.setItem('cardClipboard', JSON.stringify([]));
+        updateClipboardUI();
+      });
+
+      copyButton.addEventListener('click', function(event) {
+        event.stopPropagation(); // Prevent the clipboard from toggling
+        copyClipboardContent();
+      });
   });
