@@ -260,10 +260,46 @@ main {
     color: white;
     text-align: center;
     cursor: pointer;
+    z-index: 100;
   }
-  .clipboard-header {
+.clipboard-header {
     padding: 10px;
-  }
-  .is-hidden {
+}
+.is-hidden {
     display: none;
+}
+
+.card-container {
+    position: relative;
+    display: inline-block;
   }
+  
+.add-to-clipboard {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    opacity: 0.7;
+    pointer-events: all; /* Ensure the button itself can be clicked */
+    z-index: 50;
+  }
+
+.card-container img {
+    pointer-events: none; /* Prevent image from being clickable */
+}
+
+.card-container:hover .add-to-clipboard {
+    opacity: 1;
+  }
+
+/* Remove button. */
+.remove-button {
+background-color: transparent;
+color: #ff0000;
+border: none;
+font-size: 14px;
+margin-left: 5px;
+}
+
+.results-exp {
+    margin: 12px;
+}

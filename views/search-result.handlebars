@@ -1,14 +1,22 @@
 <body>
-  <div class="columns is-flex-wrap-wrap">
-    {{#each cardData as |card|}}
-      <div class="column is-3">
-        <a href="/search/{{card.name}}" class="box">
-          <img src={{card.image_uris.normal}} />
-        </a>
-      </div>
+<div>
+  <b><big>Found {{cardData.length}} results.</big></b>
+</div>
 
-    {{/each}}
+  <div class="results-exp">Click on a card to view more details or click the + button to add it to your clipboard.</div>
 
-  </div>
-
+	<div class="columns is-flex-wrap-wrap">
+		{{#each cardData as |card|}}
+			<div class="column is-3 card-container">
+				<a href="/search/{{card.name}}" class="box">
+					<img src={{card.image_uris.normal}} />
+					{{! Add to clipboard button }}
+					<button
+						class="add-to-clipboard"
+						data-card-name="{{this.name}}"
+					>+</button>
+				</a>
+			</div>
+		{{/each}}
+	</div>
 </body>

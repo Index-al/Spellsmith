@@ -1,44 +1,72 @@
-document.getElementById('expand-clipboard').addEventListener('click', function() {
-    const clipboardContent = document.querySelector('.card-clipboard-content');
+// This function should toggle the visibility of the clipboard contents
+function toggleClipboard() {
+    const clipboardContent = document.querySelector('.clipboard-content');
     clipboardContent.classList.toggle('is-hidden');
-  });
-
-  document.querySelectorAll('.add-to-clipboard').forEach(button => {
-    button.addEventListener('click', function(event) {
-      event.stopPropagation(); // Prevent any parent handlers from being executed
-      const cardName = this.dataset.cardName;
-      const cardImage = this.dataset.cardImage;
-      const clipboard = JSON.parse(localStorage.getItem('cardClipboard')) || [];
-      clipboard.push({ name: cardName, imageUrl: cardImage });
-      localStorage.setItem('cardClipboard', JSON.stringify(clipboard));
-      // Update the display function here as well
-    });
-  });
-  
-  // Function to display cards in the clipboard
-  function displayClipboard() {
-    const clipboard = JSON.parse(localStorage.getItem('cardClipboard')) || [];
-    const container = document.querySelector('.card-clipboard-content');
-    container.innerHTML = ''; // Clear current contents
-    clipboard.forEach(card => {
-      const cardElement = document.createElement('div');
-      cardElement.innerHTML = `
-        <img src="${card.imageUrl}" alt="${card.name}" />
-        <button class="delete-from-clipboard" data-card-name="${card.name}">X</button>
-      `;
-      container.appendChild(cardElement);
-    });
   }
   
-// Call displayClipboard on page load to show stored cards
-document.addEventListener('DOMContentLoaded', displayClipboard);
-
-document.addEventListener('click', function(event) {
-if (event.target.classList.contains('delete-from-clipboard')) {
-    const cardName = event.target.dataset.cardName;
+// Function to add a card to the clipboard
+function addToClipboard(cardName) {
     let clipboard = JSON.parse(localStorage.getItem('cardClipboard')) || [];
-    clipboard = clipboard.filter(card => card.name !== cardName);
+    if (!clipboard.includes(cardName)) {
+    clipboard.push(cardName);
     localStorage.setItem('cardClipboard', JSON.stringify(clipboard));
-    displayClipboard(); // Refresh the clipboard display
+    updateClipboardUI();
+    }
 }
+
+// Function to update the clipboard UI with stored items
+function updateClipboardUI() {
+    const clipboard = JSON.parse(localStorage.getItem('cardClipboard')) || [];
+    const container = document.querySelector('.clipboard-content');
+    container.innerHTML = ''; // Clear current content
+    clipboard.forEach(cardName => {
+    const element = document.createElement('div');
+    element.textContent = cardName;
+
+    // Remove card from clipboard button
+    const removeButton = document.createElement('button');
+    removeButton.textContent = 'X';
+    removeButton.classList.add('remove-button');
+    removeButton.addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent default button action
+        event.stopPropagation(); // Stop event bubbling
+        const cardName = this.parentElement.dataset.cardName;
+        removeFromClipboard(cardName);
+    });
+    element.appendChild(removeButton);
+    element.classList.add('clipboard-item');
+    element.dataset.cardName = cardName;
+    element.addEventListener('contextmenu', function(event) {
+        event.preventDefault(); // Prevent default button action
+        event.stopPropagation(); // Stop event bubbling
+        const cardName = this.dataset.cardName;
+        removeFromClipboard(cardName);
+    });
+
+    container.appendChild(element);
+    });
+}
+
+// Function to remove a card from the clipboard
+function removeFromClipboard(cardName) {
+    let clipboard = JSON.parse(localStorage.getItem('cardClipboard')) || [];
+    clipboard = clipboard.filter(name => name !== cardName);
+    localStorage.setItem('cardClipboard', JSON.stringify(clipboard));
+    updateClipboardUI();
+}
+
+// Attach event listeners to add-to-clipboard buttons
+document.querySelectorAll('.add-to-clipboard').forEach(button => {
+    button.addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent default button action
+    event.stopPropagation(); // Stop event bubbling
+    const cardName = this.dataset.cardName;
+    addToClipboard(cardName);
+    });
 });
+
+// Initial call to display cards in the clipboard on page load
+document.addEventListener('DOMContentLoaded', updateClipboardUI);
+
+// Attach the click event listener to the clipboard bar
+document.getElementById('clipboard-bar').addEventListener('click', toggleClipboard);
