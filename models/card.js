@@ -5,10 +5,15 @@ class Card extends Model {}
 
 Card.init(
   {
+    key_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true,
+    },
     id: {
       type: DataTypes.STRING,
       allowNull: false,
-      primaryKey: true,
     },
     name: {
       type: DataTypes.STRING,
