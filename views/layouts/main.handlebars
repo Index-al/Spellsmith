@@ -1,16 +1,23 @@
 <html lang="en">
 
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>SPELLSMITH: MTG DECKBUILDER</title>
-    <link rel="icon" href="/public/assets/favicon.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="/public/assets/favicon.ico" type="image/x-icon">
-		<link
-			rel="stylesheet"
-			href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
-		/>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SPELLSMITH: MTG DECKBUILDER</title>
+    <link rel="icon" href="/public/assets/favicon.ico" type="image/x-icon" />
+    <link
+      rel="shortcut icon"
+      href="/public/assets/favicon.ico"
+      type="image/x-icon"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+    />
     <link rel="stylesheet" href="/css/style.css" />
   </head>
 
@@ -21,13 +28,13 @@
         <div class="columns is-vcentered annoying-thing">
           <div class="column is-4 title-container">
             <a href="/">
-							<img
-								src="/assets/SpellSmith.png"
-								alt="Spell Smith Logo"
-								id="brand-logo"
-								class="brand-logo"
-							/>
-						</a>
+              <img
+                src="/assets/SpellSmith.png"
+                alt="Spell Smith Logo"
+                id="brand-logo"
+                class="brand-logo"
+              />
+            </a>
 
             <h1 class="title"><a href="/" class="brand-text">SPELLSMITH</a></h1>
           </div>
@@ -113,10 +120,10 @@
     <!-- Render script for logged in users only -->
     {{#if logged_in}}
       <script src="/js/logout.js"></script>
+      <script src="/js/savecard.js"></script>
     {{/if}}
     <script src="/js/search.js"></script>
     <script src="/js/clipboard.js"></script>
-    <script src="/js/savecard.js"></script>
   </body>
 
 </html>
