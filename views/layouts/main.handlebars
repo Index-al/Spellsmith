@@ -1,24 +1,28 @@
 <html lang="en">
 
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Magic Deck Builder</title>
-		<link
-			rel="stylesheet"
-			href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
-		/>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Magic Deck Builder</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+    />
     <link rel="stylesheet" href="/css/style.css" />
-	</head>
+  </head>
 
-	<body>
+  <body>
     <header>
       {{! Title of the site }}
       <div class="container">
         <div class="columns is-vcentered annoying-thing">
           <div class="column is-4 title-container">
-            <h1 class="title"><a href="/" class="has-text-white">Magic Deck Builder</a></h1>
+            <h1 class="title"><a href="/" class="has-text-white">Magic Deck
+                Builder</a></h1>
           </div>
           {{#unless hide_search}}
             {{! Search bar for everywhere but homepage }}
@@ -34,7 +38,8 @@
                 </div>
                 <div class="control">
                   <button
-                    class="button is-small is-info search-button " id="small-search-button"
+                    class="button is-small is-info search-button"
+                    id="small-search-button"
                   >
                     Search
                   </button>
@@ -42,17 +47,22 @@
               </form>
             </div>
           {{/unless}}
-      
+
           <div class="column is-5 has-text-right nav-buttons">
             <nav>
               {{#if logged_in}}
-                <b><a href="/deck-builder" class="nav-item has-text-white">Deck Builder</a>
-                {{!-- <a href="/collection" class="nav-item has-text-white">My Collection</a> --}}
-                <a href="/my-decks" class="nav-item has-text-white">My Decks</a>
-                <span class="nav-item has-text-white">|</span>
-                <button id="logout" class="nav-item button is-white">Logout</button></b>
+                <b><a href="/deck-builder" class="nav-item has-text-white">Deck
+                    Builder</a>
+                  <a href="/collection" class="nav-item has-text-white">My
+                    Collection</a>
+                  <a href="/my-decks" class="nav-item has-text-white">My Decks</a>
+                  <span class="nav-item has-text-white">|</span>
+                  <button
+                    id="logout"
+                    class="nav-item button is-white"
+                  >Logout</button></b>
               {{else}}
-              {{!-- Show Login button --}}
+                {{! Show Login button }}
                 <div class="field has-addons">
                   <div class="control">
                     <a href="/login" class="button" id="login">Login</a>
@@ -66,17 +76,21 @@
       </div>
     </header>
 
-{{!-- MAIN PAGE CONTENT --}}
-		<main>
-			<div class="container">
-				{{{body}}}
-			</div>
-		</main>
+    {{! MAIN PAGE CONTENT }}
+    <main>
+      <div class="container">
+        {{{body}}}
+      </div>
+    </main>
 
     <!-- Clipboard Bar HTML structure -->
     <div id="clipboard-bar" class="clipboard">
       <div class="clipboard-header">
-        <span id="clear-clipboard" class="clear-clipboard" onclick="clearAllClipboard(event)"></span>
+        <span
+          id="clear-clipboard"
+          class="clear-clipboard"
+          onclick="clearAllClipboard(event)"
+        ></span>
         <span id="copy-clipboard" class="copy-clipboard"></span>
         <span id="buy-clipboard" class="buy-clipboard"></span>
         <span id="clipboard-info" class="clipboard-info"></span>
@@ -89,13 +103,13 @@
       </div>
     </div>
 
-
-		<!-- Render script for logged in users only -->
-		{{#if logged_in}}
-			<script src="/js/logout.js"></script>
-		{{/if}}
+    <!-- Render script for logged in users only -->
+    {{#if logged_in}}
+      <script src="/js/logout.js"></script>
+    {{/if}}
     <script src="/js/search.js"></script>
     <script src="/js/clipboard.js"></script>
-	</body>
+    <script src="/js/savecard.js"></script>
+  </body>
 
 </html>

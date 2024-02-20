@@ -62,8 +62,7 @@ router.get("/login", (req, res) => {
 
   res.render("login", {
     title: "Login",
-    hide_search: true // Don't show search bar on login page
-
+    hide_search: true, // Don't show search bar on login page
   });
 });
 
@@ -80,7 +79,7 @@ router.get("/my-decks", withAuth, async (req, res) => {
       ...user,
       logged_in: true,
 
-      hide_search: false
+      hide_search: false,
     });
   } catch (err) {
     res.status(500).json(err);
@@ -99,7 +98,7 @@ router.get("/deck-builder", withAuth, async (req, res) => {
       title: "Deck Builder",
       ...user,
       logged_in: true,
-      hide_search: false
+      hide_search: false,
     });
   } catch (err) {
     res.status(500).json(err);
@@ -168,7 +167,6 @@ router.get("/search-result/:searchText", async (req, res) => {
       decks = deckData.map((deck) => deck.get({ plain: true }));
     }
 
-    console.log(decks);
     res.render("search-result", {
       cardData,
       decks,
@@ -201,7 +199,8 @@ router.get("/search/:cardName", async (req, res) => {
       card: cardData,
       logged_in,
       title: "Card Details",
-      hide_search: false});
+      hide_search: false,
+    });
   } catch (error) {
     // If the card is not found, Scryfall API will return a 404 status
     if (error.response && error.response.status === 404) {
