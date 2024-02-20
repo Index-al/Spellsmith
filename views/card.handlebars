@@ -9,23 +9,15 @@
 			rel="stylesheet"
 			href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
 		/>
-		<style>
-			.card-container { display: flex; align-items: center; justify-content:
-			center; margin-top: 2rem; } .card-image { width: 300px; height: auto;
-			margin-right: 2rem; } .card-details { flex-grow: 1; } .card-name {
-			font-size: 1.5rem; font-weight: bold; margin-bottom: 0.5rem; } .card-type
-			{ font-size: 1rem; margin-bottom: 0.5rem; } .card-text { margin-bottom:
-			0.5rem; } .card-flavor { font-style: italic; margin-bottom: 0.5rem; }
-			.card-artist { margin-bottom: 0.5rem; } .card-price { font-weight: bold; }
-		</style>
+        <link rel="stylesheet" href="/public/css/style.css">
 	</head>
 
 	{{! This is the main body of the page containing the card details }}
 	<body>
     <div class="container">
-        <div class="card-container">
+        <div class="card-container-details">
                 {{!-- CARD IMAGE --}}
-            <div class="card-image">
+            <div class="card-image" id="card-image-details">
                 <img src="{{card.image_uris.normal}}" alt="{{card.name}}" />
                 {{! Add to clipboard button }}
 					<button
