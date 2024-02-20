@@ -1,3 +1,71 @@
+/* Custom styles */
+
+/* Import fonts */
+@import url('https://fonts.googleapis.com/css2?family=Cutive+Mono&display=swap');
+
+/* Remove scrollbar across site for more minimalistic look/feel */
+* {
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+}
+
+*::-webkit-scrollbar {
+	display: none;
+}
+
+body {
+	font-family: "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans",
+		"Droid Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	background-color: #f6f7f8;
+	margin: 0;
+	padding: 0;
+}
+
+header {
+	background-color: #361e36;
+	color: white;
+	padding: 20px;
+}
+
+footer {
+	background-color: #361e36;
+	color: #ffffff;
+	padding: 20px;
+	margin-top: 20px;
+}
+
+.title {
+	font-weight: bold;
+	color: #361e36;
+}
+
+.subtitle {
+	color: #361e36;
+}
+
+.annoying-thing {
+    display: flexbox;
+justify-content: space-between;
+}
+
+.nav-buttons {
+	float: right;
+	text-align: right;
+}
+
+.nav-item {
+	margin-left: 10px;
+    margin-top: -10px;
+}
+
+.nav-item:last-child {
+	margin-right: 0;
+}
+
+main {
+	padding: 20px;
+}
+/* 
 .navbar {
   position: fixed;
   top: 0;
@@ -60,10 +128,39 @@
 }
 
 /* Background */
-body {
+/* body {
     background-image: url('../assets/hexagon_bg.png');
     background-repeat: repeat;
     background-size: 500px 500px;
+}  */
+
+/* Small search bar css */
+.small-search-container {
+    margin-top: 16px;
+    margin-left: 16px;
+}
+
+/* Logout button style */
+#logout {
+    background-color: rgb(85, 48, 85);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#login {
+    background-color: rgb(85, 48, 85);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 /* Login form styling */
@@ -149,6 +246,27 @@ body {
     align-items: center;
 }
 
+.title-container {
+    margin-top: -2px;
+}
+
+#small-search-button {
+    background-color: #553055
+}
+
+#small-search-input {
+    background-color: #e3e3e3;
+    transition: background-color 0.5s ease;
+    max-width: 1000px;
+    min-width: 230px;
+}
+
+#small-search-input:hover,
+#small-search-input:focus {
+	background-color: white;
+    transition: background-color 0.5s ease;
+}
+
 /* Style the search input */
 .search-input {
     border: none;
@@ -206,4 +324,255 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+
+/* CLIPBOARD CSS */
+.clipboard {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	background-color: rgba(54, 30, 54, 0.8);
+	color: white;
+	text-align: center;
+	cursor: pointer;
+	z-index: 1000;
+	transition: transform 0.3s ease-in-out;
+}
+
+.clipboard-content {
+	background: rgb(45, 45, 45, 0.65);
+	display: none;
+	overflow: auto;
+	max-height: 300px;
+	transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+	scrollbar-width: thin;
+	scrollbar-color: #999999 transparent;
+}
+
+.clipboard-expanded .clipboard-content {
+	display: block;
+}
+
+.clipboard-expanded {
+	transform: translateY(calc(-1 * var(300px)));
+    background-color: rgba(54, 30, 54, 0.95);
+}
+
+.clipboard-header {
+	padding: 10px;
+	position: relative;
+	font-size: 18px;
+	font-family: "Cutive Mono", monospace;
+}
+
+.clipboard-arrow {
+    position: absolute;
+    right: 20px;
+    transition: transform 0.3s;
+    font-size: 28px;
+    margin-top: -12px;
+}
+
+.clear-clipboard {
+    position: absolute;
+    left: 20px;
+    transition: transform 0.3s;
+    font-size: 22px;
+    margin-top: -6px;
+    cursor: pointer;
+}
+
+.copy-clipboard {
+    position: absolute;
+    left: 120px;
+    transition: transform 0.3s;
+    font-size: 22px;
+    margin-top: -6px;
+    cursor: pointer;
+}
+
+.buy-clipboard {
+    position: absolute;
+    left: 70px;
+    transition: transform 0.3s;
+    font-size: 22px;
+    margin-top: -6px;
+    cursor: pointer;
+}
+
+.clipboard-info {
+    position: absolute;
+    left: 5px;
+    transition: transform 0.3s;
+    font-size: 14px;
+    margin-top: 38px;
+    cursor: pointer;
+}
+
+.clipboard-item {
+    margin-top: 4px;
+    font-size: 16px;
+}
+
+.info-extended {
+    position: absolute;
+    left: 24px;
+    transition: transform 0.3s;
+    font-size: 14px;
+    cursor: pointer;
+    max-width: calc(30% - 150px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top: 90px;
+}
+
+/* .is-hidden {
+    display: none;
+} */
+
+.card-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 2rem;
+}
+
+.card-container-details {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 2rem;
+}
+
+.card-image {
+	width: 300px;
+	height: auto;
+	margin-right: 2rem;
+}
+
+.card-details {
+	flex-grow: 1;
+}
+
+.card-name {
+	font-size: 1.5rem;
+	font-weight: bold;
+	margin-bottom: 0.5rem;
+}
+
+.card-type {
+	font-size: 1rem;
+	margin-bottom: 0.5rem;
+}
+
+.card-text {
+	margin-bottom: 0.5rem;
+}
+
+.card-flavor {
+	font-style: italic;
+	margin-bottom: 0.5rem;
+}
+
+.card-artist {
+	margin-bottom: 0.5rem;
+}
+
+.card-price {
+	font-weight: bold;
+}
+
+#card-image-details {
+    min-width: 300px;
+}
+
+.card-container {
+    position: relative;
+    display: inline-block;
+}
+
+.card-container:hover .add-to-clipboard-search {
+    opacity: 0.7;
+    transition: opacity 0.2s ease-in-out;
+    z-index: 100;
+    top: 20px;
+	right: 20px;
+}
+  
+.card-container img {
+    pointer-events: none; /* Prevent image from being clickable */
+}
+
+.card-image:hover .add-to-clipboard {
+    opacity: 0.7;
+    transition: opacity 0.2s ease-in-out;
+    z-index: 100;
+    top: 10px;
+	right: 10px;
+}
+
+/* ADD TO CLIPBOARD BUTTON */
+.add-to-clipboard {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    opacity: 0;
+    pointer-events: all; /* Ensure the button itself can be clicked */
+    z-index: 50;
+    width: 36px;
+    height: 36px;
+    border-radius: 9px;
+    background-color: #191919;
+    border: none;
+    font-size: 24px;
+    line-height: 36px; /* Center the text vertically */
+    text-align: center; /* Center the text horizontally */
+    transition: opacity 0.2s ease-in-out;
+    cursor: copy;
+    color: white;
+    padding: 0;
+}
+
+
+.add-to-clipboard-search {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    opacity: 0;
+    pointer-events: all; /* Ensure the button itself can be clicked */
+    z-index: 50;
+    width: 36px;
+    height: 36px;
+    border-radius: 9px;
+    background-color: #191919;
+    border: none;
+    font-size: 24px;
+    line-height: 36px; /* Center the text vertically */
+    text-align: center; /* Center the text horizontally */
+    transition: opacity 0.2s ease-in-out;
+    cursor: copy;
+    color: white;
+    padding: 0;
+}
+
+.add-to-clipboard:hover {
+    opacity: 1;
+}
+
+.card-in-clipboard {
+    opacity: 0.7;
+}
+
+/* Remove button. */
+.remove-button {
+    background-color: transparent;
+    color: #ff0000;
+    border: none;
+    font-size: 14px;
+    margin-left: 5px;
+}
+
+.results-exp {
+    margin: 12px;
 }
