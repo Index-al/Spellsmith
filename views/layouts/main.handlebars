@@ -3,7 +3,9 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Magic Deck Builder</title>
+		<title>SPELLSMITH: MTG DECKBUILDER</title>
+    <link rel="icon" href="/public/assets/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/public/assets/favicon.ico" type="image/x-icon">
 		<link
 			rel="stylesheet"
 			href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
@@ -18,7 +20,16 @@
       <div class="container">
         <div class="columns is-vcentered annoying-thing">
           <div class="column is-4 title-container">
-            <h1 class="title"><a href="/" class="has-text-white">Magic Deck Builder</a></h1>
+            <a href="/">
+							<img
+								src="/assets/SpellSmith.png"
+								alt="Spell Smith Logo"
+								id="brand-logo"
+								class="brand-logo"
+							/>
+						</a>
+
+            <h1 class="title"><a href="/" class="brand-text">SPELLSMITH</a></h1>
           </div>
           {{#unless hide_search}}
             {{! Search bar for everywhere but homepage }}
