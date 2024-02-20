@@ -8,7 +8,7 @@ function toggleClipboard() {
 
     // Toggle arrow direction
     if (clipboardBar.classList.contains('clipboard-expanded')) {
-        arrow.textContent = '↓'; // Down arrow when expanded
+        arrow.textContent = '↓'; // Show down arrow when expanded
         trash.textContent = '🗑️' // Show trash when expanded
         copy.textContent = '📋' // Show copy when expanded
     } else {
@@ -25,6 +25,7 @@ function addToClipboard(cardName) {
     clipboard.push(cardName);
     localStorage.setItem('cardClipboard', JSON.stringify(clipboard));
     updateClipboardUI();
+    updateAddToClipboardButtons();
     }
 }
 
@@ -67,14 +68,18 @@ function removeFromClipboard(cardName) {
     clipboard = clipboard.filter(name => name !== cardName);
     localStorage.setItem('cardClipboard', JSON.stringify(clipboard));
     updateClipboardUI();
+    updateAddToClipboardButtons();
 }
 
+// Function to clear the clipboard
 function clearAllClipboard(event) {
     event.stopPropagation(); // Prevent the clipboard from toggling when the trash can is clicked
     localStorage.setItem('cardClipboard', JSON.stringify([])); // Clear the clipboard
     updateClipboardUI(); // Refresh the UI
+    updateAddToClipboardButtons(); // Update the add to clipboard buttons
 }
 
+// Function to copy the clipboard content to the user's computer clipboard
 function copyClipboardContent() {
     const clipboard = JSON.parse(localStorage.getItem('cardClipboard')) || [];
     const formattedText = clipboard.map(cardName => `1 ${cardName}`).join('\n');
@@ -87,8 +92,48 @@ function copyClipboardContent() {
     });
 }
 
+// Function to add or update add-to-clipboard buttons for each card
+function updateAddToClipboardButtons() {
+    const clipboard = JSON.parse(localStorage.getItem('cardClipboard')) || [];
+    document.querySelectorAll('.add-to-clipboard').forEach(button => {
+      const cardName = button.getAttribute('data-card-name');
+      if (clipboard.includes(cardName)) {
+        // Card is in the clipboard, change symbol and make button always visible
+        button.textContent = '✓';
+        button.style.opacity = '0.7';
+      } else {
+        // Card is not in the clipboard, use '+' symbol
+        button.textContent = '+';
+        button.style.opacity = ''; // Reset opacity
+      }
+    });
+
+    document.querySelectorAll('.add-to-clipboard-search').forEach(button => {
+        const cardName = button.getAttribute('data-card-name');
+        if (clipboard.includes(cardName)) {
+          // Card is in the clipboard, change symbol and make button always visible
+          button.textContent = '✓';
+          button.style.opacity = '0.7';
+        } else {
+          // Card is not in the clipboard, use '+' symbol
+          button.textContent = '+';
+          button.style.opacity = ''; // Reset opacity
+        }
+      });
+  }
+
 // Attach event listeners to add-to-clipboard buttons
 document.querySelectorAll('.add-to-clipboard').forEach(button => {
+    button.addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent default button action
+    event.stopPropagation(); // Stop event bubbling
+    const cardName = this.dataset.cardName;
+    addToClipboard(cardName);
+    });
+});
+
+// Attach event listeners to add-to-clipboard buttons
+document.querySelectorAll('.add-to-clipboard-search').forEach(button => {
     button.addEventListener('click', function(event) {
     event.preventDefault(); // Prevent default button action
     event.stopPropagation(); // Stop event bubbling
@@ -105,6 +150,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (clipboardBar) {
       clipboardBar.addEventListener('click', toggleClipboard);
     }
+    updateAddToClipboardButtons();
     updateClipboardUI();
 
     clearButton.addEventListener('click', function(event) {

@@ -464,6 +464,10 @@ main {
     opacity: 1;
 }
 
+.card-in-clipboard {
+    opacity: 0.7;
+}
+
 /* Remove button. */
 .remove-button {
     background-color: transparent;
