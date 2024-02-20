@@ -395,23 +395,74 @@ main {
     position: relative;
     display: inline-block;
 }
+
+.card-container:hover .add-to-clipboard-search {
+    opacity: 0.7;
+    transition: opacity 0.2s ease-in-out;
+    z-index: 100;
+    top: 20px;
+	right: 20px;
+}
   
 .card-container img {
     pointer-events: none; /* Prevent image from being clickable */
 }
 
-.card-container:hover .add-to-clipboard {
-    opacity: 1;
+.card-image:hover .add-to-clipboard {
+    opacity: 0.7;
+    transition: opacity 0.2s ease-in-out;
+    z-index: 100;
+    top: 10px;
+	right: 10px;
 }
 
+/* ADD TO CLIPBOARD BUTTON */
 .add-to-clipboard {
     position: absolute;
     top: 10px;
     right: 10px;
-    opacity: 0.7;
+    opacity: 0;
     pointer-events: all; /* Ensure the button itself can be clicked */
     z-index: 50;
-  }
+    width: 36px;
+    height: 36px;
+    border-radius: 9px;
+    background-color: #191919;
+    border: none;
+    font-size: 24px;
+    line-height: 36px; /* Center the text vertically */
+    text-align: center; /* Center the text horizontally */
+    transition: opacity 0.2s ease-in-out;
+    cursor: copy;
+    color: white;
+    padding: 0;
+}
+
+
+.add-to-clipboard-search {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    opacity: 0;
+    pointer-events: all; /* Ensure the button itself can be clicked */
+    z-index: 50;
+    width: 36px;
+    height: 36px;
+    border-radius: 9px;
+    background-color: #191919;
+    border: none;
+    font-size: 24px;
+    line-height: 36px; /* Center the text vertically */
+    text-align: center; /* Center the text horizontally */
+    transition: opacity 0.2s ease-in-out;
+    cursor: copy;
+    color: white;
+    padding: 0;
+}
+
+.add-to-clipboard:hover {
+    opacity: 1;
+}
 
 /* Remove button. */
 .remove-button {
