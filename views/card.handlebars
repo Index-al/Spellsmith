@@ -27,6 +27,11 @@
                 {{!-- CARD IMAGE --}}
             <div class="card-image">
                 <img src="{{card.image_uris.normal}}" alt="{{card.name}}" />
+                {{! Add to clipboard button }}
+					<button
+						class="add-to-clipboard"
+						data-card-name="{{card.name}}"
+					>+</button>
             </div>
               {{!-- CARD NAME, TYPE, TEXT, FLAVOR, ARTIST, PRICE --}}
             <div class="card-details">
