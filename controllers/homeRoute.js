@@ -193,13 +193,22 @@ router.get("/search/:cardName", async (req, res) => {
     if (req.session.logged_in) {
       logged_in = true;
     }
-
+    let decks = [];
+    if (logged_in) {
+      const deckData = await Deck.findAll({
+        where: {
+          user_id: req.session.user_id,
+        },
+      });
+      decks = deckData.map((deck) => deck.get({ plain: true }));
+    }
     // Render card template with the fetched data
     res.render("card", {
       card: cardData,
       logged_in,
       title: "Card Details",
       hide_search: false,
+      decks,
     });
   } catch (error) {
     // If the card is not found, Scryfall API will return a 404 status
