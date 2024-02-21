@@ -14,11 +14,17 @@
 
 	{{! This is the main body of the page containing the card details }}
 	<body>
+        <img
+			class="page-background"
+			src="{{card.image_uris.art_crop}}"
+			alt="{{card.name}}"
+		/>
     <div class="container">
         <div class="card-container-details">
                 {{!-- CARD IMAGE --}}
             <div class="card-image" id="card-image-details">
                 <img src="{{card.image_uris.normal}}" alt="{{card.name}}" />
+                
                 {{! Add to clipboard button }}
 					<button
 						class="add-to-clipboard"

@@ -190,7 +190,8 @@ router.get("/search/:cardName", async (req, res) => {
       card: cardData,
       logged_in,
       title: "Card Details",
-      hide_search: false});
+      hide_search: false}
+      );
   } catch (error) {
     // If the card is not found, Scryfall API will return a 404 status
     if (error.response && error.response.status === 404) {

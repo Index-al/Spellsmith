@@ -1,8 +1,9 @@
 async function searchHandler(e) {
   e.preventDefault();
-  const searchText = document.querySelector(".search-input").value.trim();
+  let searchText = document.querySelector(".search-input").value.trim();
 
   if (searchText) {
+    searchText = encodeURIComponent(searchText);
     document.location.replace(`/search-result/${searchText}`);
   }
 }
