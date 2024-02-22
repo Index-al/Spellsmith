@@ -4,9 +4,10 @@ const withAuth = require("../../utils/auth");
 
 router.post("/", withAuth, async (req, res) => {
   try {
+    const collection_id = req.session.user_id;
     const newCard = await Card.create({
+      collection_id,
       ...req.body,
-      collection_id: req.session.user_id,
     });
 
     res.status(200).json(newCard);

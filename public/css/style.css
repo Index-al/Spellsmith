@@ -22,9 +22,12 @@ body {
 }
 
 header {
+    position:static;
 	background-color: #361e36;
 	color: white;
 	padding: 20px;
+    z-index: 10;
+    width: 100%;
 }
 
 footer {
@@ -89,6 +92,19 @@ justify-content: space-between;
 main {
 	padding: 20px;
 }
+
+/* Blurred background on card details page */
+.page-background {
+	position: fixed;
+	left: 0px;
+	top: 80px;
+	width: 100%;
+	height: 100%;
+	opacity: 0.15;
+	z-index: 0;
+	filter: blur(5px);
+}
+
 /* 
 .navbar {
   position: fixed;
@@ -462,6 +478,14 @@ main {
 	margin-top: 2rem;
 }
 
+.card-container:hover .flip-card {
+    opacity: 0.7;
+    transition: opacity 0.2s ease-in-out;
+    z-index: 100;
+    top: 60px;
+	right: 10px;
+}
+
 .card-container-details {
 	display: flex;
 	align-items: center;
@@ -534,6 +558,35 @@ main {
     z-index: 100;
     top: 10px;
 	right: 10px;
+}
+
+.card-image:hover .flip-card {
+    opacity: 0.7;
+    transition: opacity 0.2s ease-in-out;
+    z-index: 100;
+    top: 60px;
+	right: 10px;
+}
+
+.flip-card {
+    position: absolute;
+    top: 60px;
+    right: 10px;
+    opacity: 0;
+    pointer-events: all; /* Ensure the button itself can be clicked */
+    z-index: 50;
+    width: 36px;
+    height: 36px;
+    border-radius: 9px;
+    background-color: #191919;
+    border: none;
+    font-size: 24px;
+    line-height: 36px; /* Center the text vertically */
+    text-align: center; /* Center the text horizontally */
+    transition: opacity 0.2s ease-in-out;
+    cursor: copy;
+    color: white;
+    padding: 0;
 }
 
 /* ADD TO CLIPBOARD BUTTON */

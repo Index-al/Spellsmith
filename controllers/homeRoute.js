@@ -119,10 +119,9 @@ router.get("/collection", withAuth, async (req, res) => {
     const dataFiltered = collectionData.filter(
       (card) => card.dataValues.collection_id === req.session.user_id
     );
-
     scryfallObjData = [];
     for (let i = 0; i < dataFiltered.length; i++) {
-      const apiUrl = `https://api.scryfall.com/cards/search?q=${dataFiltered[i].dataValues.name}`;
+      const apiUrl = `https://api.scryfall.com/cards/${dataFiltered[i].dataValues.id}`;
       setTimeoutAsync(50);
       const response = await axios.get(apiUrl);
       const cardData = await response.data.data;
