@@ -16,7 +16,7 @@ router.post("/", withAuth, async (req, res) => {
   }
 });
 
-router.put("/update", withAuth, async (req, res) => {
+router.delete("/update", withAuth, async (req, res) => {
   try {
     const removedCard = await Card.destroy({
       where: {

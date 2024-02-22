@@ -40,7 +40,8 @@ const signupFormHandler = async (event) => {
     if (response.ok) {
       document.location.replace("/my-decks");
     } else {
-      alert(response.statusText);
+      // alert(response.statusText);
+      //todo replace alert
     }
   }
 };

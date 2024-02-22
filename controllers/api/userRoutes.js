@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const { User, Collection } = require("../../models");
 const nodemailer = require("nodemailer");
+const withAuth = require("../../utils/auth");
 
 const transporter = nodemailer.createTransport({
   host: "smtp-mail.outlook.com",
@@ -47,7 +48,7 @@ router.post("/", async (req, res) => {
 router.post("/login", async (req, res) => {
   try {
     const userData = await User.findOne({ where: { email: req.body.email } });
-
+    // console.log(userData);
     if (!userData) {
       res
         .status(400)
@@ -82,6 +83,46 @@ router.post("/logout", (req, res) => {
     });
   } else {
     res.status(404).end();
+  }
+});
+
+router.put("/update", withAuth, async (req, res) => {
+  try {
+    const updatedPassword = req.body.newPassword;
+    const user_id = req.session.user_id;
+    const userData = await User.findOne({ where: { id: user_id } });
+
+    const validPassword = await userData.checkPassword(req.body.password);
+    if (!validPassword) {
+      res.status(400).json({ message: "Incorrect password, please try again" });
+      return;
+    }
+    // console.log(updatedPassword);
+
+    await userData.update({
+      password: updatedPassword,
+    });
+    res.status(200).json("Password Updated!");
+  } catch (error) {
+    res.status(400).json(error);
+  }
+});
+
+router.delete("/delete", withAuth, async (req, res) => {
+  try {
+    const user_id = req.session.user_id;
+    const removedCard = await User.destroy({
+      where: {
+        id: user_id,
+      },
+    });
+    if (req.session.logged_in) {
+      req.session.destroy(() => {
+        res.status(204).end();
+      });
+    }
+  } catch (error) {
+    res.status(400).json(error);
   }
 });
 

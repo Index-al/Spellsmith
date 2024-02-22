@@ -119,18 +119,16 @@ router.get("/collection", withAuth, async (req, res) => {
     const dataFiltered = collectionData.filter(
       (card) => card.dataValues.collection_id === req.session.user_id
     );
-
     scryfallObjData = [];
+    // console.log(dataFiltered);
     for (let i = 0; i < dataFiltered.length; i++) {
       const apiUrl = `https://api.scryfall.com/cards/${dataFiltered[i].dataValues.id}`;
       setTimeoutAsync(50);
       const response = await axios.get(apiUrl);
       const cardData = response.data;
       cardData.key_id = dataFiltered[i].key_id;
-      console.log(cardData);
       scryfallObjData.push(cardData);
     }
-
     res.render("collection", {
       scryfallObjData,
       logged_in: true,
@@ -219,6 +217,38 @@ router.get("/search/:cardName", async (req, res) => {
       console.error(error);
       res.status(500).send("Error retrieving card data");
     }
+  }
+});
+
+router.get("/account", withAuth, async (req, res) => {
+  try {
+    // Find the logged in user based on the session ID
+    const userData = await User.findByPk(req.session.user_id, {
+      attributes: { exclude: ["password"] },
+    });
+
+    const user = userData.get({ plain: true });
+    res.render("account", {
+      title: "Account",
+      ...user,
+      logged_in: true,
+      hide_search: false,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+router.get("/reset-password", withAuth, async (req, res) => {
+  try {
+    // Find the logged in user based on the session ID
+
+    res.render("reset-password", {
+      title: "Reset Password",
+      logged_in: true,
+      hide_search: false,
+    });
+  } catch (err) {
+    res.status(500).json(err);
   }
 });
 
