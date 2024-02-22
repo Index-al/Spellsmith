@@ -11,9 +11,11 @@ async function saveToCollection(e) {
     },
   });
   if (response.ok) {
-    alert("Card added to Collection!");
+    // alert("Card added to Collection!");
+    //todo: replace alert
   } else {
-    alert("Failed to add Card to Collection");
+    // alert("Failed to add Card to Collection");
+    //todo: replace alert
   }
 }
 
