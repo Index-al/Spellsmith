@@ -14,6 +14,16 @@ const deleteAccount = async (e) => {
   }
 };
 
+const dialog = document.querySelector("dialog");
+const openDialogButton = document.querySelector("#open-dialog");
+const closeDialogButton = document.querySelector("#cancel-delete");
+openDialogButton.addEventListener("click", () => {
+  dialog.showModal();
+});
+closeDialogButton.addEventListener("click", () => {
+  dialog.close();
+});
+
 document
   .querySelector("#delete-account")
   .addEventListener("click", deleteAccount);

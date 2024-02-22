@@ -4,12 +4,16 @@
       <div class="box has-text-centered columns is-flex-direction-column">
         <a href="/reset-password" class="button box is-info">Update Password</a>
 
-        <button class="button box is-danger" id="delete-account">
+        <button class="button box is-danger" id="open-dialog">
           Delete Account
         </button>
       </div>
     </div>
-
+    <dialog>
+      <h3>Are you sure you want to delete your account?</h3>
+      <button id="delete-account" class="button is-danger">Delete</button>
+      <button id="cancel-delete" class="button is-gray">Cancel</button>
+    </dialog>
   </div>
   <script src="/js/account.js"></script>
 </body>
