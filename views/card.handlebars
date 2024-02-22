@@ -14,17 +14,37 @@
 
 	{{! This is the main body of the page containing the card details }}
 	<body>
-        <img
-			class="page-background"
-			src="{{card.image_uris.art_crop}}"
-			alt="{{card.name}}"
-		/>
+        {{!-- Fancy card details background --}}
+        <div>
+            {{!-- Make sure double-faced cards are supported --}}
+        {{#if card.card_faces}}
+            <img
+                class="page-background"
+                src="{{card.card_faces.[0].image_uris.art_crop}}"
+                alt="{{card.name}}"
+            />
+        {{else}}
+            <img
+                class="page-background"
+                src="{{card.image_uris.art_crop}}"
+                alt="{{card.name}}"
+            />
+        {{/if}}
+        </div>
     <div class="container">
         <div class="card-container-details">
-                {{!-- CARD IMAGE --}}
+            {{!-- CARD IMAGE --}}
             <div class="card-image" id="card-image-details">
-                <img src="{{card.image_uris.normal}}" alt="{{card.name}}" />
-                
+                {{#if card.card_faces}}
+                    <img src="{{card.card_faces.[0].image_uris.normal}}" alt="{{card.name}}" class="card-face front" />
+                    <img src="{{card.card_faces.[1].image_uris.normal}}" alt="{{card.name}}" class="card-face back" style="display: none;" />
+                    <button
+                    class="flip-card"
+                    onclick="flipCard()"
+                    >⤴</button>
+                {{else}}
+                    <img src="{{card.image_uris.normal}}" alt="{{card.name}}" />
+                {{/if}}
                 {{! Add to clipboard button }}
 					<button
 						class="add-to-clipboard"
@@ -55,5 +75,5 @@
         </div>
     </div>
 </body>
-
+<script src="/js/card.js"></script>
 </html>

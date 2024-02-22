@@ -8,8 +8,18 @@
 	<div class="columns is-flex-wrap-wrap">
 		{{#each cardData as |card|}}
 			<div class="column is-3 card-container">
-				<a href="/search/{{card.name}}" class="box">
-					<img src={{card.image_uris.normal}} />
+				<a href="/search/{{sanitizeCardName card.name}}" class="box">
+					{{#if card.card_faces}}
+						<img src="{{card.card_faces.[0].image_uris.normal}}" alt="{{card.name}}" />
+						<img src="{{card.card_faces.[1].image_uris.normal}}" alt="{{card.name}}" class="card-face back" style="display: none;" />
+						<button
+						class="flip-card"
+						onclick="flipCard()"
+						>⤴</button>
+					{{else}}
+						<img src="{{card.image_uris.normal}}" />
+					{{/if}}
+
 					{{! Add to clipboard button }}
 					<button
 						class="add-to-clipboard-search"
