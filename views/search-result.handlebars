@@ -12,10 +12,10 @@
 					{{#if card.card_faces}}
 						<img src="{{card.card_faces.[0].image_uris.normal}}" alt="{{card.name}}" />
 						<img src="{{card.card_faces.[1].image_uris.normal}}" alt="{{card.name}}" class="card-face back" style="display: none;" />
-						<button
+						{{!-- <button
 						class="flip-card"
 						onclick="flipCard()"
-						>⤴</button>
+						>⤴</button> --}}
 					{{else}}
 						<img src="{{card.image_uris.normal}}" />
 					{{/if}}
