@@ -2,7 +2,7 @@ async function saveToCollection(e) {
   e.preventDefault();
   const id = e.target.getAttribute("card-id");
   const name = e.target.getAttribute("card-name");
-  console.log(name);
+ 
   const response = await fetch("/api/cards/", {
     method: "POST",
     body: JSON.stringify({ id, name }),
