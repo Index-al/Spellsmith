@@ -114,6 +114,7 @@ router.get("/collection", withAuth, async (req, res) => {
           model: Collection,
         },
       ],
+      order: [["name", "ASC"]],
     });
 
     const dataFiltered = collectionData.filter(
