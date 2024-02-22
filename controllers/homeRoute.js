@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const sequelize = require("../config/connection");
-const { User, Card, CardCollection, Collection } = require("../models");
+const { User, Card, Deck, Collection } = require("../models");
 const withAuth = require("../utils/auth");
 const { QueryTypes } = require("sequelize");
 const axios = require("axios");
@@ -44,7 +44,7 @@ router.get("/", async (req, res) => {
       title: "Homepage",
       logged_in: req.session.logged_in,
       featuredCards: validFeaturedCards,
-      is_homepage: true,
+      hide_search: true,
     });
   } catch (err) {
     console.error("Error while fetching featured cards:", err);
@@ -55,17 +55,18 @@ router.get("/", async (req, res) => {
 router.get("/login", (req, res) => {
   // If the user is already logged in, redirect the request to another route
   if (req.session.logged_in) {
-    res.redirect("/account");
+    // Make sure session data is refreshed
+    res.redirect("/my-decks");
     return;
   }
 
   res.render("login", {
     title: "Login",
-    is_homepage: false,
+    hide_search: true, // Don't show search bar on login page
   });
 });
 
-router.get("/account", withAuth, async (req, res) => {
+router.get("/my-decks", withAuth, async (req, res) => {
   try {
     // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.session.user_id, {
@@ -73,11 +74,12 @@ router.get("/account", withAuth, async (req, res) => {
     });
 
     const user = userData.get({ plain: true });
-    res.render("account", {
-      title: "Account",
+    res.render("my-decks", {
+      title: "My Decks",
       ...user,
       logged_in: true,
-      is_homepage: false,
+
+      hide_search: false,
     });
   } catch (err) {
     res.status(500).json(err);
@@ -96,7 +98,7 @@ router.get("/deck-builder", withAuth, async (req, res) => {
       title: "Deck Builder",
       ...user,
       logged_in: true,
-      is_homepage: false,
+      hide_search: false,
     });
   } catch (err) {
     res.status(500).json(err);
@@ -117,16 +119,14 @@ router.get("/collection", withAuth, async (req, res) => {
     const dataFiltered = collectionData.filter(
       (card) => card.dataValues.collection_id === req.session.user_id
     );
-
     scryfallObjData = [];
     for (let i = 0; i < dataFiltered.length; i++) {
-      const apiUrl = `https://api.scryfall.com/cards/search?q=${dataFiltered[i].dataValues.name}`;
+      const apiUrl = `https://api.scryfall.com/cards/${dataFiltered[i].dataValues.id}`;
       setTimeoutAsync(50);
       const response = await axios.get(apiUrl);
-      const cardData = await response.data.data;
-      scryfallObjData.push(cardData[0]);
+      const cardData = await response.data;
+      scryfallObjData.push(cardData);
     }
-
     console.log(scryfallObjData);
     res.render("collection", {
       scryfallObjData,
@@ -151,13 +151,23 @@ router.get("/search-result/:searchText", async (req, res) => {
         cardData[i].image_uris = cardData[i].card_faces[0].image_uris;
       }
     }
-    console.log(cardData[3]);
     let logged_in = false;
     if (req.session.logged_in) {
       logged_in = true;
     }
+    let decks = [];
+    if (logged_in) {
+      const deckData = await Deck.findAll({
+        where: {
+          user_id: req.session.user_id,
+        },
+      });
+      decks = deckData.map((deck) => deck.get({ plain: true }));
+    }
+
     res.render("search-result", {
       cardData,
+      decks,
       logged_in,
     });
   } catch (error) {
@@ -181,13 +191,22 @@ router.get("/search/:cardName", async (req, res) => {
     if (req.session.logged_in) {
       logged_in = true;
     }
-
+    let decks = [];
+    if (logged_in) {
+      const deckData = await Deck.findAll({
+        where: {
+          user_id: req.session.user_id,
+        },
+      });
+      decks = deckData.map((deck) => deck.get({ plain: true }));
+    }
     // Render card template with the fetched data
     res.render("card", {
       card: cardData,
       logged_in,
       title: "Card Details",
-      is_homepage: false,
+      hide_search: false,
+      decks,
     });
   } catch (error) {
     // If the card is not found, Scryfall API will return a 404 status

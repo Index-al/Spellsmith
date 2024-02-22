@@ -23,22 +23,42 @@
   </section> --}}
 
   <section class="section">
-    <div class="container">
-      <h2 class="title is-2">Featured Cards</h2>
-      <div class="columns is-multiline">
-        {{#each featuredCards}}
-        <div class="column is-one-third">
-          <div class="card">
-            <div class="card-image">
-              <figure class="image is-4by3">
-                <img src="{{this.imageUrl}}" alt="{{this.name}}">
-              </figure>
-            </div>
-            <div class="card-content">
-              <div class="media">
-                <div class="media-content">
-                  <p class="title is-4">{{this.name}}</p>
-                  <p class="subtitle is-6">{{this.set}}</p>
+		<div class="container">
+			<h2 class="title is-2">Featured Cards</h2>
+			<div class="columns is-multiline">
+				{{#each featuredCards}}
+          <div class="column is-one-third">
+            <!-- Wrap the card with an anchor tag that points to the search route with the card's name -->
+            <a href="/search/{{this.name}}" class="card" style="width: 100%; height: auto; padding-top: 30px;">
+            
+            {{!-- Card image --}}
+              <div class="card-image" style="width: 75%; height: auto; margin: 0 auto;">
+            {{#if this.card_faces}}
+                <figure class="image">
+                  <img src="{{this.card_faces.[0].image_uris.normal}}" alt="{{this.name}}" class="card-face front" />
+                  <img src="{{this.card_faces.[1].image_uris.normal}}" alt="{{this.name}}" class="card-face back" style="display: none;" />
+                  <button
+                  class="flip-card"
+                  onclick="flipCard()"
+                  >⤴</button>
+            {{else}}
+                <figure class="image">
+                  <img src="{{this.imageUrl}}" alt="{{this.name}}" onerror="this.style.display='none'"/>
+            {{/if}}
+                  {{! Add to clipboard button }}
+                  <button
+                  class="add-to-clipboard"
+                  data-card-name="{{this.name}}"
+                  >+</button>
+                </figure>
+              </div>
+              <div class="card-content">
+                <div class="media">
+                  <div class="media-content has-text-centered">
+										<p class="title is-4">{{this.name}}</p>
+										<p class="subtitle is-6">{{this.set}}</p>
+									</div>
+
                 </div>
               </div>
             </div>
