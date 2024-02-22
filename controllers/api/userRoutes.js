@@ -26,8 +26,10 @@ router.post("/", async (req, res) => {
       const mailOptions = {
         from: "mtgdeckbuilder22@outlook.com", // Sender’s email address
         to: `${req.body.email}`, // Recipient’s email address
-        subject: "Thank you for signing up for MTG Deckbuilder!", // Email subject
-        text: "Thank you for creating an account!", // Email body
+        subject: "Thank you for signing up for Spellsmith!", // Email subject
+        text: `Thank you for creating an account!
+        
+        `, // Email body
       };
 
       transporter.sendMail(mailOptions, (error, info) => {
