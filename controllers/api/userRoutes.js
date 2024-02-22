@@ -30,13 +30,13 @@ router.post("/", async (req, res) => {
         text: "Thank you for creating an account!", // Email body
       };
 
-      // transporter.sendMail(mailOptions, (error, info) => {
-      //   if (error) {
-      //     console.error("Error sending email: " + error);
-      //   } else {
-      //     console.log("Email sent: " + info.response);
-      //   }
-      // });
+      transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+          console.error("Error sending email: " + error);
+        } else {
+          console.log("Email sent: " + info.response);
+        }
+      });
 
       res.status(200).json(userData);
     });
