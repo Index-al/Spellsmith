@@ -11,9 +11,11 @@ async function removeFromCollection(e) {
   });
   if (response.ok) {
     document.location.reload();
-    alert("Card removed from Collection!");
+    // alert("Card removed from Collection!");
+    //todo: replace alert
   } else {
-    alert("Failed to remove Card from Collection");
+    // alert("Failed to remove Card from Collection");
+    //todo: replace alert
   }
 }
 

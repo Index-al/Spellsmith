@@ -17,7 +17,8 @@ const loginFormHandler = async (event) => {
       // If successful, redirect the browser to the homepage
       document.location.replace("/my-decks");
     } else {
-      alert(response.statusText);
+      // alert(response.statusText);
+      //todo: replace alert
     }
   }
 };
