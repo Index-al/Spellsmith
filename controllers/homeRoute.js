@@ -126,6 +126,7 @@ router.get("/collection", withAuth, async (req, res) => {
       setTimeoutAsync(50);
       const response = await axios.get(apiUrl);
       const cardData = await response.data.data;
+      cardData[0].key_id = dataFiltered[i].key_id;
       scryfallObjData.push(cardData[0]);
     }
 

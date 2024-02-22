@@ -17,17 +17,11 @@ router.post("/", withAuth, async (req, res) => {
 
 router.put("/update", withAuth, async (req, res) => {
   try {
-    console.log(req.body.key_id);
-    const removedCard = await Card.update(
-      {
-        collection_id: NULL,
+    const removedCard = await Card.destroy({
+      where: {
+        key_id: req.body.key_id,
       },
-      {
-        where: {
-          key_id: req.body.key_id,
-        },
-      }
-    );
+    });
 
     res.status(200).json(removedCard);
   } catch (err) {
