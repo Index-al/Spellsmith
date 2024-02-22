@@ -1,10 +1,13 @@
 <body>
   <div class="columns is-flex-wrap-wrap">
     {{#each scryfallObjData as |card|}}
-      <div class="column is-3">
+      <div class="column is-3 box">
         <a href="/search/{{card.name}}" class="box">
           <img src={{card.image_uris.normal}} />
         </a>
+        <button class="button remove" card-id="{{card.key_id}}">
+          Remove from Collection
+        </button>
       </div>
 
     {{/each}}

@@ -129,7 +129,7 @@ router.get("/collection", withAuth, async (req, res) => {
       scryfallObjData.push(cardData[0]);
     }
 
-    console.log(scryfallObjData);
+    // console.log(scryfallObjData);
     res.render("collection", {
       scryfallObjData,
       logged_in: true,
