@@ -16,3 +16,5 @@ const deckBuilderHtml = template(deckData);
 
 // Display rendered HTML in the DOM
 document.getElementById("deckBuilderContainer").innerHTML = deckBuilderHtml;
+
+module.exports = router;
