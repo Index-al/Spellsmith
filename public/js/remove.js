@@ -1,9 +1,9 @@
 async function removeFromCollection(e) {
   e.preventDefault();
   const key_id = e.target.getAttribute("card-id");
-  console.log(key_id);
+  // console.log(key_id);
   const response = await fetch("/api/cards/update", {
-    method: "PUT",
+    method: "DELETE",
     body: JSON.stringify({ key_id }),
     headers: {
       "Content-Type": "application/json",
