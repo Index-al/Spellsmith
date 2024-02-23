@@ -144,7 +144,15 @@ router.get("/search-result/:searchText", async (req, res) => {
   const cardSearch = req.params.searchText;
   try {
     const apiUrl = `https://api.scryfall.com/cards/search?q=${cardSearch}`;
-    const response = await axios.get(apiUrl);
+    const response = await axios.get(apiUrl).catch(function (error) {
+      if (error.response) {
+        console.log(error.response.data);
+        return;
+      } else if (error.request) {
+        console.log("ERROR: ", error.message);
+      }
+    });
+
     const cardData = response.data.data;
     // console.log(cardData[3].image_uris.normal);
 
@@ -173,7 +181,10 @@ router.get("/search-result/:searchText", async (req, res) => {
       logged_in,
     });
   } catch (error) {
-    res.status(400).json(error);
+    console.log("error: ", error);
+    res.status(404).render("no-results", {
+      error,
+    });
   }
 });
 
@@ -252,5 +263,7 @@ router.get("/reset-password", withAuth, async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+
 
 module.exports = router;
