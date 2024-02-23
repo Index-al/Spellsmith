@@ -1,16 +1,19 @@
 <html lang="en">
 
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>SPELLSMITH: MTG DECKBUILDER</title>
-    <link rel="icon" href="/assets/favicon.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon">
-		<link
-			rel="stylesheet"
-			href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
-		/>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SPELLSMITH: MTG DECKBUILDER</title>
+    <link rel="icon" href="/assets/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+    />
     <link rel="stylesheet" href="/css/style.css" />
   </head>
 
@@ -58,11 +61,13 @@
           <div class="column is-5 has-text-right nav-buttons">
             <nav>
               {{#if logged_in}}
-                <b><a href="/deck-builder" class="nav-item has-text-white">Deck
-                    Builder</a>
+                <b>
+                  {{! <a href="/deck-builder" class="nav-item has-text-white">Deck
+                    Builder</a> }}
                   <a href="/collection" class="nav-item has-text-white">My
                     Collection</a>
                   <a href="/my-decks" class="nav-item has-text-white">My Decks</a>
+                  <a href="/account" class="nav-item has-text-white">Account</a>
                   <span class="nav-item has-text-white">|</span>
                   <button
                     id="logout"

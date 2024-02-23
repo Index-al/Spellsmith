@@ -27,14 +27,6 @@ Card.init(
         key: "id",
       },
     },
-    clipboard_id: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-      reference: {
-        model: "clipboard",
-        key: "id",
-      },
-    },
     deck_id: {
       type: DataTypes.INTEGER,
       allowNull: true,
