@@ -69,16 +69,19 @@ router.get("/login", (req, res) => {
 router.get("/my-decks", withAuth, async (req, res) => {
   try {
     // Find the logged in user based on the session ID
-    const userData = await User.findByPk(req.session.user_id, {
-      attributes: { exclude: ["password"] },
-    });
 
-    const user = userData.get({ plain: true });
+    const deckData = await Deck.findAll({
+      where: { user_id: req.session.user_id },
+    });
+    const decks = [];
+    for (let i = 0; i < deckData.length; i++) {
+      decks.push(deckData[i].dataValues);
+    }
+    console.log(decks);
     res.render("my-decks", {
       title: "My Decks",
-      ...user,
+      decks,
       logged_in: true,
-
       hide_search: false,
     });
   } catch (err) {
@@ -263,7 +266,5 @@ router.get("/reset-password", withAuth, async (req, res) => {
     res.status(500).json(err);
   }
 });
-
-
 
 module.exports = router;
