@@ -124,7 +124,7 @@ router.get("/collection", withAuth, async (req, res) => {
       (card) => card.dataValues.collection_id === req.session.user_id
     );
     scryfallObjData = [];
-    // console.log(dataFiltered);
+
     for (let i = 0; i < dataFiltered.length; i++) {
       const apiUrl = `https://api.scryfall.com/cards/${dataFiltered[i].dataValues.id}`;
       setTimeoutAsync(50);
@@ -132,6 +132,14 @@ router.get("/collection", withAuth, async (req, res) => {
       const cardData = response.data;
       cardData.key_id = dataFiltered[i].key_id;
       scryfallObjData.push(cardData);
+    }
+    for (let i = 0; i < scryfallObjData.length; i++) {
+      scryfallObjData[i].name = scryfallObjData[i].name.replace(/\/\//g, "");
+
+      if (!scryfallObjData[i].image_uris) {
+        scryfallObjData[i].image_uris =
+          scryfallObjData[i].card_faces[0].image_uris;
+      }
     }
     res.render("collection", {
       scryfallObjData,

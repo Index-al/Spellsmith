@@ -6,6 +6,7 @@ const updatePassword = async (e) => {
   const newPasswordConfirm = document
     .querySelector("#new-password-confirm")
     .value.trim();
+
   if (
     password &&
     newPassword &&
@@ -18,14 +19,13 @@ const updatePassword = async (e) => {
       headers: { "Content-Type": "application/json" },
     });
     if (response.ok) {
-      
+      await Toast.fire("Password Updated!");
       document.location.replace("/account");
     } else {
-      
-      //todo replace
+      Toast.fire("Password Failed to Update");
     }
   } else {
-    alert("password was incorrect, or new passwords did not match!");
+    Toast.fire("password was incorrect, or new passwords did not match!");
   }
 };
 
