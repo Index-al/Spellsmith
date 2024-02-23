@@ -18,19 +18,15 @@ const updatePassword = async (e) => {
       headers: { "Content-Type": "application/json" },
     });
     if (response.ok) {
-      alert("password updated!");
-      //todo replace
+      
+      document.location.replace("/account");
     } else {
-      alert(response.statusText);
+      
       //todo replace
     }
   } else {
     alert("password was incorrect, or new passwords did not match!");
   }
-};
-
-const deleteAccount = async (e) => {
-  e.preventDefault();
 };
 
 document

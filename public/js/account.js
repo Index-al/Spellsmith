@@ -1,20 +1,20 @@
 const deleteAccount = async (e) => {
   e.preventDefault();
-
+  
   const response = await fetch("/api/users/delete", {
     method: "DELETE",
   });
   if (response.ok) {
-    alert("account deleted!");
+    console.log("account deleted!");
     //todo replace alert
     document.location.replace("/");
   } else {
-    alert("failed to delete account");
+    console.log("failed to delete account");
     //todo replace alert
   }
 };
 
-const dialog = document.querySelector("dialog");
+const dialog = document.querySelector("#delete-account");
 const openDialogButton = document.querySelector("#open-dialog");
 const closeDialogButton = document.querySelector("#cancel-delete");
 openDialogButton.addEventListener("click", () => {
