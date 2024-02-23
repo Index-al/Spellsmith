@@ -1,8 +1,12 @@
 const deleteAccount = async (e) => {
   e.preventDefault();
-
+  const passwordVerify = document
+    .querySelector("#password-confirm")
+    .value.trim();
   const response = await fetch("/api/users/delete", {
     method: "DELETE",
+    body: JSON.stringify({ passwordVerify }),
+    headers: { "Content-Type": "application/json" },
   });
 
   if (response.ok) {

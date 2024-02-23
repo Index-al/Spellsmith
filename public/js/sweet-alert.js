@@ -9,4 +9,3 @@ const Toast = Swal.mixin({
     toast.onmouseleave = Swal.resumeTimer;
   },
 });
-module.exports = Toast;
