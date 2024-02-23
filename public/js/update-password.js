@@ -22,10 +22,10 @@ const updatePassword = async (e) => {
       await Toast.fire("Password Updated!");
       document.location.replace("/account");
     } else {
-      Toast.fire("Password Failed to Update");
+      await Toast.fire("Password Failed to Update");
     }
   } else {
-    Toast.fire("password was incorrect, or new passwords did not match!");
+    await Toast.fire("password was incorrect, or new passwords did not match!");
   }
 };
 

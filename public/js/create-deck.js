@@ -1,4 +1,3 @@
-
 async function createDeck(e) {
   e.preventDefault();
 
@@ -33,7 +32,7 @@ async function removeDeck(e) {
   if (response.ok) {
     document.location.reload();
   } else {
-    Toast.fire("Failed to delete Deck!");
+    await Toast.fire("Failed to delete Deck!");
   }
 }
 

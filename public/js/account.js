@@ -4,17 +4,17 @@ const deleteAccount = async (e) => {
   const response = await fetch("/api/users/delete", {
     method: "DELETE",
   });
-  
+
   if (response.ok) {
     console.log("account deleted!");
 
     document.location.replace("/");
   } else {
-    Toast.fire("Failed to delete account!");
+    await Toast.fire("Failed to delete account!");
   }
 };
 
-const dialog = document.querySelector("#delete-account");
+const dialog = document.querySelector("#account-dialog");
 const openDialogButton = document.querySelector("#open-dialog");
 const closeDialogButton = document.querySelector("#cancel-delete");
 openDialogButton.addEventListener("click", () => {

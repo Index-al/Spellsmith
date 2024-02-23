@@ -11,7 +11,7 @@ async function removeFromCollection(e) {
   if (response.ok) {
     document.location.reload();
   } else {
-    Toast.fire("Failed to remove Card from Collection");
+    await Toast.fire("Failed to remove Card from Collection");
   }
 }
 

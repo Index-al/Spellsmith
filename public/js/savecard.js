@@ -1,9 +1,8 @@
-
 async function saveToCollection(e) {
   e.preventDefault();
   const id = e.target.getAttribute("card-id");
   const name = e.target.getAttribute("card-name");
-  
+
   const response = await fetch("/api/cards/", {
     method: "POST",
     body: JSON.stringify({ id, name }),
@@ -12,9 +11,9 @@ async function saveToCollection(e) {
     },
   });
   if (response.ok) {
-    Toast.fire("Card Added to Collection!");
+    await Toast.fire("Card Added to Collection!");
   } else {
-    Toast.fire("Failed to add Card to Collection!");
+    await Toast.fire("Failed to add Card to Collection!");
   }
 }
 

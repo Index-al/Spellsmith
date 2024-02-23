@@ -6,8 +6,7 @@ const logout = async () => {
   if (response.ok) {
     document.location.replace("/login");
   } else {
-    
-    Toast.fire("Failed to Log Out!");
+    await Toast.fire("Failed to Log Out!");
   }
 };
 

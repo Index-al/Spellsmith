@@ -12,12 +12,12 @@ const loginFormHandler = async (event) => {
       body: JSON.stringify({ email, password }),
       headers: { "Content-Type": "application/json" },
     });
-    
+
     if (response.ok) {
       // If successful, redirect the browser to the homepage
       document.location.replace("/");
     } else {
-      Toast.fire("Failed to login!");
+      await Toast.fire("Failed to login!");
     }
   }
 };
@@ -39,8 +39,7 @@ const signupFormHandler = async (event) => {
     if (response.ok) {
       document.location.replace("/my-decks");
     } else {
-      
-      Toast.fire("Failed to Sign up");
+      await Toast.fire("Failed to Sign up");
     }
   }
 };
