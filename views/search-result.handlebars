@@ -8,7 +8,7 @@
 
   <div class="columns is-flex-wrap-wrap">
     {{#each cardData as |card|}}
-      <div class="column is-3 card-container box has-text-centered">
+      <div class="column is-offset-1-mobile is-4-mobile is-3 card-container box has-text-centered">
         <a href="/search/{{sanitizeCardName card.name}}" class="box" style="box-shadow:0px">
           {{#if card.card_faces}}
             <img src="{{card.card_faces.[0].image_uris.normal}}" alt="{{card.name}}" />
