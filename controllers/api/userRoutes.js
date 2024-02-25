@@ -29,7 +29,7 @@ router.post("/", async (req, res) => {
         to: `${req.body.email}`, // Recipient’s email address
         subject: "Thank you for signing up for Spellsmith!", // Email subject
         text: `Thank you for creating an account!
-        
+        Please Visit at https://spellsmith-mvp-65f389051aae.herokuapp.com/
         `, // Email body
       };
 
