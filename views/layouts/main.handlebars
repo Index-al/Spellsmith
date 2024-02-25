@@ -40,7 +40,7 @@
                 class="brand-text is-size-3-mobile"
               >SPELLSMITH</a></h1>
           </div>
-          <div class="column is-offset-1 is-2">
+          <div class="column is-offset-2 is-5 is-8-mobile">
             {{#unless hide_search}}
               {{! Search bar for everywhere but homepage }}
               <div class="small-search-container">
@@ -66,7 +66,7 @@
             {{/unless}}
           </div>
         </div>
-        <div class="columns">
+        <div class="columns nav-menu">
           <div class="column has-text-right nav-buttons">
             <nav class="columns">
               {{#if logged_in}}
@@ -89,7 +89,7 @@
               {{else}}
                 {{! Show Login button }}
                 <div class="column is-offset-10">
-                  <div class="field has-addons">
+                  <div class="field has-addons nav-item">
                     <div class="control">
                       <a href="/login" class="button" id="login">Login</a>
                     </div>
