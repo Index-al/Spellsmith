@@ -37,7 +37,7 @@ const signupFormHandler = async (event) => {
     });
 
     if (response.ok) {
-      document.location.replace("/collection");
+      document.location.replace("/");
     } else {
       await Toast.fire("Failed to Sign up");
     }
