@@ -275,4 +275,14 @@ router.get("/reset-password", withAuth, async (req, res) => {
   }
 });
 
+router.get("/search-result/", async (req, res) => {
+  let logged_in = false;
+  if (req.session.logged_in) {
+    logged_in = true;
+  }
+  res.render("no-results", {
+    logged_in,
+  });
+});
+
 module.exports = router;
