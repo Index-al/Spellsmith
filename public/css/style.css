@@ -103,14 +103,14 @@ main {
 
 /* Blurred background on card details page  */
 .page-background {
-  position: fixed;
-  left: 0px;
-  top: 80px;
-  width: 100%;
-  /* height: 100%; */
-  opacity: 0.15;
-  z-index: 1;
-  filter: blur(5px);
+    position: fixed;
+    left: 0px;
+    top: 80px;
+    width: 100%;
+    height: 100%;
+    opacity: 0.15;
+    z-index: 0;
+    filter: blur(5px);
 }
 
 .navbar {
