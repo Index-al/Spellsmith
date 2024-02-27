@@ -1,11 +1,11 @@
 <body>
-  <div class="columns is-flex-wrap-wrap">
+  <div class="columns is-mobile is-flex-wrap-wrap">
     {{#each scryfallObjData as |card|}}
-      <div class="column is-3 box">
+      <div class="column box is-6-mobile is-3-tablet">
         <a href="/search/{{card.name}}" class="box">
           <img src={{card.image_uris.normal}} />
         </a>
-        <button class="button remove" card-id="{{card.key_id}}">
+        <button class="button remove is-responsive" card-id="{{card.key_id}}">
           Remove from Collection
         </button>
       </div>

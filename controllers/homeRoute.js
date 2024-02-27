@@ -194,6 +194,7 @@ router.get("/search-result/:searchText", async (req, res) => {
   } catch (error) {
     console.log("error: ", error);
     res.status(404).render("no-results", {
+      logged_in,
       error,
     });
   }
@@ -273,6 +274,16 @@ router.get("/reset-password", withAuth, async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
   }
+});
+
+router.get("/search-result/", async (req, res) => {
+  let logged_in = false;
+  if (req.session.logged_in) {
+    logged_in = true;
+  }
+  res.render("no-results", {
+    logged_in,
+  });
 });
 
 module.exports = router;
