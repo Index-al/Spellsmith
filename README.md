@@ -52,8 +52,8 @@ Navigate to `localhost:3001` after starting the server to begin exploring the va
 
 ## Preview
 ![Screenshot of Homepage](./Images/Homepage%20Screenshot.png)
-![Screenshot of My Collection](./images/My%20Collection%20Screenshot.png)
-![Screenshot of SearchResults](./images/SearchResults%20Screenshot.png)
+![Screenshot of My Collection](./Images/My%20Collection%20Screenshot.png)
+![Screenshot of SearchResults](./Images/SearchResults%20Screenshot.png)
 
 ## Live Demo
 We have a live demo currently deployed to heroku online [here](https://spellsmith-mvp-65f389051aae.herokuapp.com/).
