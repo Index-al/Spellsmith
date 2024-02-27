@@ -1,52 +1,87 @@
-# Spellsmith
+# Spellsmith 🧙✨
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![GitHub issues](https://img.shields.io/github/issues/Index-al/Spellsmith)](https://github.com/Index-al/Spellsmith/issues)
+[![GitHub license](https://img.shields.io/github/license/Index-al/Spellsmith)](https://github.com/Index-al/Spellsmith/blob/main/LICENSE)
 
-## Description
+Welcome to Spellsmith, your digital deck-building companion for Magic: The Gathering (MTG)! 🃏🔮 
 
-A fullstack magic the gathering collection app using express, sequelize and handlebars. App is deployed to Heroku, using JAWSDB. Further development may add deckbuilding features.
+## About The Project
+
+Spellsmith is a full-stack application designed to enhance your MTG gameplay. This platform allows players to search, filter, and discover cards using a friendly interface with real-time updates from the Scryfall API.
 
 ## Table of Contents
 
-- [Installation](#installation)
-- [Usage](#usage)
-- [Credits](#credits)
-- [Contributing](#contributing)
-- [Tests](#tests)
-- [Questions](#questions)
+- [Features](#features)
+- [Getting Started](#getting-started)
+  - [Installation](#installation)
+  - [Usage](#usage)
+- [Preview](#preview)
+- [Live Demo](#live-demo)
+- [Roadmap](#roadmap)
 - [License](#license)
+- [Contact](#contact)
 
-## Installation
+### Features:
 
-Clone the Repo, run npm i, create local db using schema file, run using node server.js.
+- 🔍 **Search and Filter**: Easily find the cards you need with our intuitive search functionality.
+- 💾 **Deck Building**: Craft and visualize your ultimate deck with our interactive tools.
+- 🔄 **Card Flipping**: View double-faced cards with a simple click to see both sides.
+- 🧾 **Clipboard Management**: Keep track of your favorite cards and organize your collection.
+- 📦 **Export and Share**: Ready your deck for battle and share it with friends or competitors.
+
+## Getting Started
+
+To get a local copy up and running, follow these simple steps:
+
+1. Clone the repo
+   ```sh
+   git clone https://github.com/Index-al/Spellsmith.git
+   ```
+2. Install NPM packages
+   ```sh
+   npm install
+   ```
+3. Start the server
+   ```sh
+   npm start
+   ```
 
 ## Usage
 
-Use to search Scryfall's api for cards, and add them to a collection using buttons under each card. Collection is saved to the db, after creating an account. A card clipboard is available to add cards to purchase. Clipboard data is stored in local storage, so no account is needed for this feature.
+Navigate to `localhost:3001` after starting the server to begin exploring the vast world of MTG cards. Build your decks, save your collections, and prepare for glory!
 
-Link on Heroku!
-https://spellsmith-mvp-65f389051aae.herokuapp.com/
+## Preview
+![Screenshot of Homepage](./Images/Homepage%20Screenshot.png)
+![Screenshot of My Collection](./images/My%20Collection%20Screenshot.png)
+![Screenshot of SearchResults](./images/SearchResults%20Screenshot.png)
 
-![Screenshot of Homepage](images/Homepage%20Screenshot.png)
-![Screenshot of My Collection](images/My%20Collection%20Screenshot.png)
-![Screenshot of SearchResults](images/SearchResults%20Screenshot.png)
+## Live Demo
+We have a live demo currently deployed to heroku online [here](https://spellsmith-mvp-65f389051aae.herokuapp.com/).
 
-## Credits
+## Roadmap
 
-MVC template was provided my UofM coding bootcamp 2024. Worked on by Daniel Cathey, Engdawork Kassaye, Lillith Schade and Dan Tolbert.
-
-## Contributing
-
-N/A
-
-## Tests
-
-N/A
-
-## Questions
-
-Please contact me at [treblotnad@gmail.com](mailto:treblotnad@gmail.com) or [Index-al](github.com/Index-al) with any questions!
+See the [open issues](https://github.com/Index-al/Spellsmith/issues) for a list of proposed features (and known issues).
 
 ## License
 
-This project is licensed under the MIT License - see the License file for details.
+Distributed under the MIT License. See `LICENSE` for more information.
+
+## Contact
+
+- [Daniel Cathey](DanTCathey@gmail.com)
+
+- [Dan Tolbert](treblotnad@gmail.com)
+
+- [Engdawork Kassaye](https://github.com/Engdaworkkassaye)
+
+- [Lillith Schade](https://github.com/LschadeL)
+
+
+Project Link: [https://github.com/Index-al/Spellsmith](https://github.com/Index-al/Spellsmith)
+
+## Acknowledgements
+
+- [Scryfall API](https://scryfall.com/docs/api) for providing the card data.
+- UofM Coding Bootcamp for the use of their MVC template.
+
+- Thank you! 🌟
