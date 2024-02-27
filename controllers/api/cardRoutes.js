@@ -5,13 +5,16 @@ const withAuth = require("../../utils/auth");
 router.post("/", withAuth, async (req, res) => {
   try {
     const collection_id = req.session.user_id;
+    const name = req.body.name;
+    const id = req.body.id;
     const newCard = await Card.create({
       collection_id,
-      ...req.body,
+      name,
+      id,
     });
-
     res.status(200).json(newCard);
   } catch (err) {
+    console.log(err);
     res.status(400).json(err);
   }
 });

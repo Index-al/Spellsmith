@@ -18,6 +18,7 @@ router.post("/", async (req, res) => {
 
     const newCollection = await Collection.create({
       user_id: userData.id,
+      id: userData.id,
     });
     req.session.save(() => {
       req.session.user_id = userData.id;
@@ -50,7 +51,7 @@ router.post("/", async (req, res) => {
 router.post("/login", async (req, res) => {
   try {
     const userData = await User.findOne({ where: { email: req.body.email } });
-    // console.log(userData);
+
     if (!userData) {
       res
         .status(400)
@@ -59,7 +60,7 @@ router.post("/login", async (req, res) => {
     }
 
     const validPassword = await userData.checkPassword(req.body.password);
-
+    console.log(validPassword);
     if (!validPassword) {
       res
         .status(400)
@@ -113,6 +114,14 @@ router.put("/update", withAuth, async (req, res) => {
 router.delete("/delete", withAuth, async (req, res) => {
   try {
     const user_id = req.session.user_id;
+    const userData = await User.findOne({ where: { id: user_id } });
+
+    const validPassword = await userData.checkPassword(req.body.passwordVerify);
+
+    if (!validPassword) {
+      res.status(400).json({ message: "Incorrect password, please try again" });
+      return;
+    }
     const removedCard = await User.destroy({
       where: {
         id: user_id,

@@ -1,20 +1,24 @@
 const deleteAccount = async (e) => {
   e.preventDefault();
-
+  const passwordVerify = document
+    .querySelector("#password-confirm")
+    .value.trim();
   const response = await fetch("/api/users/delete", {
     method: "DELETE",
+    body: JSON.stringify({ passwordVerify }),
+    headers: { "Content-Type": "application/json" },
   });
+
   if (response.ok) {
-    alert("account deleted!");
-    //todo replace alert
+    console.log("account deleted!");
+
     document.location.replace("/");
   } else {
-    alert("failed to delete account");
-    //todo replace alert
+    await Toast.fire("Failed to delete account!");
   }
 };
 
-const dialog = document.querySelector("dialog");
+const dialog = document.querySelector("#account-dialog");
 const openDialogButton = document.querySelector("#open-dialog");
 const closeDialogButton = document.querySelector("#cancel-delete");
 openDialogButton.addEventListener("click", () => {

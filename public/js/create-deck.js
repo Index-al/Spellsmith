@@ -9,13 +9,11 @@ async function createDeck(e) {
       "Content-Type": "application/json",
     },
   });
+
   if (response.ok) {
     document.location.reload();
-    alert("New Deck Created!");
-    //todo: replace alert
   } else {
-    // alert("Failed to add Card to Collection");
-    //todo: replace alert
+    Toast.fire("Failed to create Deck");
   }
 }
 
@@ -30,12 +28,11 @@ async function removeDeck(e) {
       "Content-Type": "application/json",
     },
   });
+
   if (response.ok) {
     document.location.reload();
-    //todo: replace alert
   } else {
-    // alert("Failed to add Card to Collection");
-    //todo: replace alert
+    await Toast.fire("Failed to delete Deck!");
   }
 }
 
