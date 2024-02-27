@@ -1,0 +1,29 @@
+<div class="columns">
+  <div class="column is-9">
+    <div class="columns is-flex-wrap-wrap">
+      {{#each decks as |deck|}}
+        <a href="/deck/{{deck.id}}" class="box">
+          <div class="column is-4">
+            {{deck.name}}
+            <button class="button remove-button" deck_id="{{deck.id}}">
+              Delete Deck
+            </button>
+          </div>
+        </a>
+      {{/each}}
+    </div>
+  </div>
+  <div class="column is-3">
+    <form class="form box create-deck">
+      <div>
+        <label for="new-deck">New Deck Name:</label>
+        <input class="input-field" type="text" id="new-deck" />
+      </div>
+      <div>
+        <button class="button" id="create-deck" type="submit">Create Deck</button>
+      </div>
+    </form>
+  </div>
+  <script src="/js/create-deck.js"></script>
+
+</div>

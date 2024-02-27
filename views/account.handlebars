@@ -1,0 +1,23 @@
+<body>
+  <div class="columns">
+    <div class="column is-4 is-offset-4">
+      <div class="box has-text-centered columns is-flex-direction-column">
+        <a href="/reset-password"><button class="button box is-info">Update
+            Password</button></a>
+
+        <a>
+          <button class="button box is-danger" id="open-dialog">
+            Delete Account
+          </button>
+        </a>
+      </div>
+    </div>
+    <dialog id="account-dialog">
+      <h3>Please enter your password to delete your account</h3>
+      <input class="input-field" type="password" id="password-confirm" />
+      <button id="delete-account" class="button is-danger">Delete</button>
+      <button id="cancel-delete" class="button is-gray">Cancel</button>
+    </dialog>
+  </div>
+  <script src="/js/account.js"></script>
+</body>
