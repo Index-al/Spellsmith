@@ -194,6 +194,7 @@ router.get("/search-result/:searchText", async (req, res) => {
   } catch (error) {
     console.log("error: ", error);
     res.status(404).render("no-results", {
+      logged_in,
       error,
     });
   }
