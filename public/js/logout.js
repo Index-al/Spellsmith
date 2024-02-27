@@ -3,11 +3,10 @@ const logout = async () => {
     method: "POST",
     headers: { "Content-Type": "application/json" },
   });
-
   if (response.ok) {
     document.location.replace("/login");
   } else {
-    alert(response.statusText);
+    await Toast.fire("Failed to Log Out!");
   }
 };
 

@@ -15,9 +15,9 @@ const loginFormHandler = async (event) => {
 
     if (response.ok) {
       // If successful, redirect the browser to the homepage
-      document.location.replace("/my-decks");
+      document.location.replace("/");
     } else {
-      alert(response.statusText);
+      await Toast.fire("Failed to login!");
     }
   }
 };
@@ -28,7 +28,7 @@ const signupFormHandler = async (event) => {
   const userName = document.querySelector("#name-signup").value.trim();
   const email = document.querySelector("#email-signup").value.trim();
   const password = document.querySelector("#password-signup").value.trim();
-  console.log("signupform");
+  // console.log("signupform");
   if (userName && email && password) {
     const response = await fetch("/api/users", {
       method: "POST",
@@ -37,9 +37,9 @@ const signupFormHandler = async (event) => {
     });
 
     if (response.ok) {
-      document.location.replace("/my-decks");
+      document.location.replace("/");
     } else {
-      alert(response.statusText);
+      await Toast.fire("Failed to Sign up");
     }
   }
 };

@@ -1,85 +1,107 @@
 <html lang="en">
 
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>SPELLSMITH: MTG DECKBUILDER</title>
-    <link rel="icon" href="/assets/favicon.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon">
-		<link
-			rel="stylesheet"
-			href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
-		/>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SPELLSMITH: MTG DECKBUILDER</title>
+    <link rel="icon" href="/assets/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+    />
     <link rel="stylesheet" href="/css/style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/js/sweet-alert.js"></script>
   </head>
 
   <body>
     <header>
       {{! Title of the site }}
       <div class="container">
-        <div class="columns is-vcentered annoying-thing">
-          <div class="column is-4 title-container">
+        <div class="columns">
+
+          <div class="column is-offset-1 is-4 title-container">
             <a href="/">
               <img
                 src="/assets/SpellSmith.png"
                 alt="Spell Smith Logo"
                 id="brand-logo"
-                class="brand-logo"
+                class="brand-logo is-hidden-touch"
               />
             </a>
 
-            <h1 class="title"><a href="/" class="brand-text">SPELLSMITH</a></h1>
+            <h1 class="title"><a
+                href="/"
+                class="brand-text is-size-3-mobile"
+              >SPELLSMITH</a></h1>
           </div>
-          {{#unless hide_search}}
-            {{! Search bar for everywhere but homepage }}
-            <div class="small-search-container">
-              <form class="field has-addons search-form">
-                <div class="control is-expanded">
-                  <input
-                    class="input is-small search-input"
-                    id="small-search-input"
-                    type="text"
-                    placeholder="Search for cards.."
-                  />
-                </div>
-                <div class="control">
-                  <button
-                    class="button is-small is-info search-button"
-                    id="small-search-button"
-                  >
-                    Search
-                  </button>
-                </div>
-              </form>
-            </div>
-          {{/unless}}
-
-          <div class="column is-5 has-text-right nav-buttons">
-            <nav>
+          <div class="column is-offset-2 is-5 is-8-mobile">
+            {{#unless hide_search}}
+              {{! Search bar for everywhere but homepage }}
+              <div class="small-search-container">
+                <form class="field has-addons search-form">
+                  <div class="control is-expanded">
+                    <input
+                      class="input is-small search-input"
+                      id="small-search-input"
+                      type="text"
+                      placeholder="Search for cards.."
+                    />
+                  </div>
+                  <div class="control">
+                    <button
+                      class="button is-small is-info search-button"
+                      id="small-search-button"
+                    >
+                      Search
+                    </button>
+                  </div>
+                </form>
+              </div>
+            {{/unless}}
+          </div>
+        </div>
+        <div class="columns nav-menu">
+          <div class="column has-text-right nav-buttons">
+            <nav class="columns">
               {{#if logged_in}}
-                <b><a href="/deck-builder" class="nav-item has-text-white">Deck
-                    Builder</a>
+                <div class="column is-offset-6">
+
                   <a href="/collection" class="nav-item has-text-white">My
                     Collection</a>
-                  <a href="/my-decks" class="nav-item has-text-white">My Decks</a>
-                  <span class="nav-item has-text-white">|</span>
+                </div>
+                <div class="column">
+                  <a href="/account" class="nav-item has-text-white">Account</a>
+                </div>
+
+                <div class="column">
                   <button
                     id="logout"
                     class="nav-item button is-white"
-                  >Logout</button></b>
+                  >Logout</button>
+                </div>
+
               {{else}}
                 {{! Show Login button }}
-                <div class="field has-addons">
-                  <div class="control">
-                    <a href="/login" class="button" id="login">Login</a>
+                <div class="column is-offset-10">
+                  <div class="field has-addons nav-item">
+                    <div class="control">
+                      <a href="/login" class="button" id="login">Login</a>
+                    </div>
                   </div>
                 </div>
+
               {{/if}}
             </nav>
           </div>
 
         </div>
+
       </div>
     </header>
 
@@ -114,6 +136,7 @@
     {{#if logged_in}}
       <script src="/js/logout.js"></script>
       <script src="/js/savecard.js"></script>
+      <script src="/js/remove.js"></script>
     {{/if}}
     <script src="/js/search.js"></script>
     <script src="/js/clipboard.js"></script>
