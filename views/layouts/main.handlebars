@@ -66,14 +66,20 @@
             {{/unless}}
           </div>
         </div>
+
+        {{!-- Navigation menu --}}
+
         <div class="columns nav-menu">
           <div class="column has-text-right nav-buttons">
             <nav class="columns">
               {{#if logged_in}}
-                <div class="column is-offset-6">
-
-                  <a href="/collection" class="nav-item has-text-white">My
-                    Collection</a>
+                <div class = "column is-offset-6">
+                  <a href="/deck-builder" class="nav-item has-text-white">
+                  Deckbuilder</a>
+                </div>
+                <div class="column">
+                  <a href="/collection" class="nav-item has-text-white">
+                  Collection</a>
                 </div>
                 <div class="column">
                   <a href="/account" class="nav-item has-text-white">Account</a>
