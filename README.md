@@ -70,6 +70,8 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 - [Daniel Cathey](DanTCathey@gmail.com)
 
+- [Justin Dockendorf](justindoc4@msn.com)
+
 - [Dan Tolbert](treblotnad@gmail.com)
 
 - [Engdawork Kassaye](https://github.com/Engdaworkkassaye)
