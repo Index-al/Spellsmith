@@ -204,6 +204,7 @@ router.get("/search-result/:searchText", async (req, res) => {
   } catch (error) {
     console.log("error: ", error);
 
+    let logged_in = false;
     if (req.session.logged_in) {
       logged_in = true;
     }
