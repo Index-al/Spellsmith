@@ -1,7 +1,7 @@
 <html lang="en">
 
   <head>
-    {{!-- Basic Header Info --}}
+    {{!-- Basic Head Info --}}
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Spellsmith - Your Deck Building Companion</title>
@@ -91,10 +91,15 @@
         <div class="columns nav-menu">
           <div class="column has-text-right nav-buttons">
             <nav class="columns">
+
               {{#if logged_in}}
                 <div class = "column is-offset-6">
                   <a href="/deck-builder" class="nav-item has-text-white">
                   Deckbuilder</a>
+                </div>
+                <div class = "column">
+                  <a href="/open-packs" class="nav-item has-text-white">
+                  Open Packs</a>
                 </div>
                 <div class="column">
                   <a href="/collection" class="nav-item has-text-white">
@@ -112,8 +117,12 @@
                 </div>
 
               {{else}}
+                <div class = "column is-offset-10">
+                  <a href="/open-packs" class="nav-item has-text-white">
+                  Open Packs</a>
+                </div>
                 {{! Show Login button }}
-                <div class="column is-offset-10">
+                <div class="column">
                   <div class="field has-addons nav-item">
                     <div class="control">
                       <a href="/login" class="button" id="login">Login</a>
