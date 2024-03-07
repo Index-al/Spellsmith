@@ -203,10 +203,15 @@ router.get("/search-result/:searchText", async (req, res) => {
     });
   } catch (error) {
     console.log("error: ", error);
+
+    if (req.session.logged_in) {
+      logged_in = true;
+    }
+
     res.status(404).render("no-results", {
+			error: error,
       logged_in,
-      error,
-    });
+		});
   }
 });
 
