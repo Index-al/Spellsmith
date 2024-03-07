@@ -42,6 +42,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
+app.use(express.static('public'));
+
+
 // Helmet middleware for setting various HTTP headers for security
 //app.use(helmet());
 
