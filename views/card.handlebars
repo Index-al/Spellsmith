@@ -52,10 +52,10 @@
 						<img src="{{card.image_uris.normal}}" alt="{{card.name}}" />
 					{{/if}}
 
-					{{!-- {{#if ../logged_in}} --}}
+					{{#if logged_in}}
 					<button class="add-to-collection" card-id="{{card.id}}" card-name="{{card.name}}"
 					>📁</button>
-					{{!-- {{/if}} --}}
+					{{/if}}
 
 					<button
 						class="add-to-clipboard"
