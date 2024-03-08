@@ -33,8 +33,16 @@ async function saveToCollection(e) {
 	}
 }
 
+const collectionButtonsSearch = document.querySelectorAll(
+	".add-to-collection-search",
+);
+
+collectionButtonsSearch.forEach((button) => {
+	button.addEventListener("click", saveToCollection);
+});
+
 const collectionButtons = document.querySelectorAll(
-	".add-to-collection-search"
+	".add-to-collection",
 );
 
 collectionButtons.forEach((button) => {
