@@ -58,10 +58,13 @@
                   data-card-name="{{this.name}}"
                   >+</button>
 
-                  {{#if ../logged_in}}
+                  {{!-- Disabled until ".this" bug is fixed --}}
+                  {{!-- Adding to collection from homepage breaks users' collection entirely requiring manual reset --}}
+                  {{!-- {{#if ../logged_in}}
                     <button class="add-to-collection" card-id="{{this.id}}" card-name="{{this.name}}"
                     >📁</button>
-                  {{/if}}
+                  {{/if}} --}}
+
                 </figure>
               </div>
               <div class="card-content">
